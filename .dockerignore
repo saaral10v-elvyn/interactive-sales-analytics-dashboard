@@ -1,0 +1,12 @@
+.git
+.github
+.gitignore
+.pytest_cache
+.ruff_cache
+.venv
+__pycache__
+*.py[cod]
+docs
+tests
+Interactive-Sales-Analytics-Dashboard.txt
+README.md

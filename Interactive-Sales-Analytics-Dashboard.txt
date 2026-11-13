@@ -1,0 +1,34 @@
+I want to build a project called **Interactive Sales Analytics Dashboard**.
+
+### Project Idea
+
+The goal is to develop an interactive web-based data analytics application that helps users understand and explore sales data without needing advanced programming or data analysis knowledge.
+
+Imagine a business owner or sales manager uploading their company's sales CSV file. Instead of manually analysing spreadsheets, they can use our dashboard to instantly understand business performance through key metrics, interactive charts, visualizations, and filters.
+
+### How the Application Should Work
+
+1. Users upload their own sales dataset in CSV format.
+2. The application reads and displays the uploaded data.
+3. It validates the dataset and handles common data quality issues.
+4. It automatically calculates important business metrics, such as total revenue, total orders, average order value, and product performance.
+5. It presents sales insights through interactive charts and visualizations.
+6. Users can filter information by date, product category, region, and other relevant fields.
+7. Users can explore the filtered results and download the processed data.
+
+### Technology Preferences
+
+- Python – Main programming language.
+- Pandas and NumPy – Data processing and analysis.
+- Streamlit – Interactive web application.
+- Plotly – Interactive charts and visualizations.
+
+### Project Goals
+
+This is a beginner-to-intermediate portfolio project. I want to gain practical experience in Python, data analysis, data visualization, application development, and software project organization.
+
+The finished application should be professional, easy to use, reliable, and suitable for showcasing on GitHub and in my developer portfolio.
+
+I prefer using open-source technologies and OpenCode AI-assisted development to complete the project efficiently.
+
+**Important:** First understand and analyse this project idea. Do not create files or write code yet. We will discuss and finalize the requirements and architecture before implementation.
