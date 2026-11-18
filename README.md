@@ -272,8 +272,10 @@ Recommended and optional columns:
 
 Common aliases are detected automatically. For example, `Date`, `Purchase Date`,
 `Qty`, `Price`, `Amount`, `Territory` and `Product Name` are accepted. Matching is
-case-insensitive and ignores spaces and punctuation. Each detected field carries
-a confidence score; low-confidence matches can be overridden manually on the Home
+case-insensitive and ignores spaces and punctuation. Classic Models headers such
+as `ORDERNUMBER`, `ORDERDATE`, `PRODUCTNAME`, `PRODUCTLINE`, `QUANTITYORDERED`,
+`PRICEEACH` and `SALES` are recognised too. Each detected field carries a
+confidence score; low-confidence matches can be overridden manually on the Home
 page. A column can only be mapped to one field.
 
 ### Dates and ambiguity
@@ -381,7 +383,7 @@ python -m ruff check .
 python -m ruff format --check .
 ```
 
-The suite contains 182 tests. It covers the demo dataset, schema alias detection
+The suite contains 192 tests. It covers the demo dataset, schema alias detection
 and confidence, CSV loading and error handling, date ambiguity decisions,
 validation checks, cleaning rules, profiling and INR formatting. Dashboard
 coverage includes every KPI formula, distinct and fallback order counting,
