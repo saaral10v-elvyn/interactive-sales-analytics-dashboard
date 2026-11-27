@@ -7,6 +7,16 @@ import pytest
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
+def pytest_addoption(parser: pytest.Parser) -> None:
+    """Add the flag used to regenerate the frozen parity fixtures."""
+    parser.addoption(
+        "--update-golden",
+        action="store_true",
+        default=False,
+        help="Rewrite tests/golden/*.json with the current domain-layer output.",
+    )
+
+
 @pytest.fixture(scope="session")
 def project_root() -> Path:
     return PROJECT_ROOT

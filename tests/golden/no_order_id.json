@@ -1,0 +1,1785 @@
+{
+  "case": "no_order_id",
+  "cleaning": {
+    "auto": {
+      "cleaned": {
+        "columns": [
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "date_format_used": "auto",
+        "dtypes": {
+          "category": "string",
+          "discount_percent": "Float64",
+          "line_total": "Float64",
+          "order_date": "datetime64[ns]",
+          "product": "string",
+          "quantity": "Int64",
+          "region": "string",
+          "revenue": "Float64",
+          "status": "string",
+          "unit_price": "Float64"
+        },
+        "order_id_available": false,
+        "preview": [
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-01-05T00:00:00",
+            "product": "Alpha Widget",
+            "quantity": 2,
+            "region": "North",
+            "revenue": 200.0,
+            "status": "Completed",
+            "unit_price": 100.0
+          },
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-01-05T00:00:00",
+            "product": "Beta Widget",
+            "quantity": 1,
+            "region": "North",
+            "revenue": 50.0,
+            "status": "Completed",
+            "unit_price": 50.0
+          },
+          {
+            "category": "Gadgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-01-09T00:00:00",
+            "product": "Gamma Gadget",
+            "quantity": 4,
+            "region": "South",
+            "revenue": 100.0,
+            "status": "Completed",
+            "unit_price": 25.0
+          },
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-02-02T00:00:00",
+            "product": "Alpha Widget",
+            "quantity": 3,
+            "region": "South",
+            "revenue": 300.0,
+            "status": "Completed",
+            "unit_price": 100.0
+          }
+        ],
+        "report": {
+          "block_reason": null,
+          "blocked": false,
+          "date_format_used": "auto",
+          "dropped_ratio": 0.0,
+          "issue_counts": {
+            "error": 0,
+            "info": 1,
+            "warning": 0
+          },
+          "issues": [
+            {
+              "action_taken": "Each row is counted as one order. If your file has multiple line items per order, add an order_id column for accurate order counts.",
+              "affected_label": "0 rows",
+              "affected_rows": 0,
+              "code": "ORDER_ID_MISSING",
+              "description": "No order_id column was provided.",
+              "example_text": "—",
+              "examples": [],
+              "severity": "info"
+            }
+          ],
+          "rows_dropped": 0,
+          "rows_input": 4,
+          "rows_output": 4,
+          "should_warn_about_drops": false
+        },
+        "returns_kept": 0,
+        "revenue_source": "quantity × unit_price after discount",
+        "rows": 4
+      },
+      "date_format": "auto",
+      "ok": true
+    },
+    "dmy": null
+  },
+  "dataset": {
+    "column_count": 7,
+    "columns": [
+      "order_date",
+      "product",
+      "category",
+      "region",
+      "quantity",
+      "unit_price",
+      "status"
+    ],
+    "delimiter": ",",
+    "dtypes": {
+      "category": "object",
+      "order_date": "object",
+      "product": "object",
+      "quantity": "object",
+      "region": "object",
+      "status": "object",
+      "unit_price": "object"
+    },
+    "encoding": "utf-8",
+    "filename": "no_order_id.csv",
+    "mapping": {
+      "confidence": {
+        "category": 1.0,
+        "order_date": 1.0,
+        "product": 1.0,
+        "quantity": 1.0,
+        "region": 1.0,
+        "status": 1.0,
+        "unit_price": 1.0
+      },
+      "fields": {
+        "category": "category",
+        "order_date": "order_date",
+        "product": "product",
+        "quantity": "quantity",
+        "region": "region",
+        "status": "status",
+        "unit_price": "unit_price"
+      },
+      "is_complete": true,
+      "low_confidence_fields": [],
+      "methods": {
+        "category": "header",
+        "order_date": "header",
+        "product": "header",
+        "quantity": "header",
+        "region": "header",
+        "status": "header",
+        "unit_price": "header"
+      },
+      "missing_required": [],
+      "requires_review": false,
+      "table": [
+        {
+          "Confidence": "—",
+          "Field": "order_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "order_date",
+          "Method": "header",
+          "Source column": "order_date",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "customer_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "product",
+          "Method": "header",
+          "Source column": "product",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "category",
+          "Method": "header",
+          "Source column": "category",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "region",
+          "Method": "header",
+          "Source column": "region",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "quantity",
+          "Method": "header",
+          "Source column": "quantity",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "unit_price",
+          "Method": "header",
+          "Source column": "unit_price",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "line_total",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "discount_percent",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "status",
+          "Method": "header",
+          "Source column": "status",
+          "Status": "Detected"
+        }
+      ]
+    },
+    "preview": [
+      {
+        "category": "Widgets",
+        "order_date": "2026-01-05",
+        "product": "Alpha Widget",
+        "quantity": "2",
+        "region": "North",
+        "status": "Completed",
+        "unit_price": "100"
+      },
+      {
+        "category": "Widgets",
+        "order_date": "2026-01-05",
+        "product": "Beta Widget",
+        "quantity": "1",
+        "region": "North",
+        "status": "Completed",
+        "unit_price": "50"
+      },
+      {
+        "category": "Gadgets",
+        "order_date": "2026-01-09",
+        "product": "Gamma Gadget",
+        "quantity": "4",
+        "region": "South",
+        "status": "Completed",
+        "unit_price": "25"
+      },
+      {
+        "category": "Widgets",
+        "order_date": "2026-02-02",
+        "product": "Alpha Widget",
+        "quantity": "3",
+        "region": "South",
+        "status": "Completed",
+        "unit_price": "100"
+      }
+    ],
+    "profile": {
+      "category_count": 2,
+      "column_count": 7,
+      "date_max": "2026-02-02",
+      "date_min": "2026-01-05",
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "net_revenue": null,
+      "order_count": null,
+      "product_count": 3,
+      "region_count": 2,
+      "row_count": 4
+    },
+    "row_count": 4,
+    "size_bytes": 275,
+    "source": "upload",
+    "warnings": []
+  },
+  "date_inspection": {
+    "ambiguous_count": 0,
+    "ambiguous_examples": [],
+    "day_first_hint_count": 4,
+    "invalid_count": 0,
+    "month_first_hint_count": 0,
+    "parseable_count": 4,
+    "suggested_format": null,
+    "total_values": 4
+  },
+  "exports": {
+    "cleaned": {
+      "filename": "no_order_id_cleaned_20260101_120000.csv",
+      "sha256": "a3c72c17f9b21523ebbec0b0e19a1aeb3cbca9e03bdc37a24617abc3525f536c",
+      "size_bytes": 365
+    },
+    "filtered": {
+      "filename": "no_order_id_filtered_20260101_120000.csv",
+      "sha256": "a3c72c17f9b21523ebbec0b0e19a1aeb3cbca9e03bdc37a24617abc3525f536c",
+      "size_bytes": 365
+    },
+    "quality_report": {
+      "filename": "no_order_id_quality_report_20260101_120000.csv",
+      "sha256": "e615c30ac8237e4d78f497c08478735e1a0ef5c341308b431afe47c747fceb8e",
+      "size_bytes": 758
+    }
+  },
+  "filters": {
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-01-05",
+      "statuses": []
+    },
+    "filtered_rows": 4,
+    "summary": "All dates · All categories · All regions · All products"
+  },
+  "mapping_contract": {
+    "duplicate_source_error": {
+      "message": "Column 'product' is mapped to both 'order_date' and 'product'.",
+      "type": "MappingError"
+    },
+    "manual_override": null,
+    "unknown_column_error": {
+      "message": "Column '__not_a_column__' is not present in this file.",
+      "type": "MappingError"
+    }
+  },
+  "pages": {
+    "bounds": [
+      "2026-01-05",
+      "2026-02-02"
+    ],
+    "default": {
+      "explorer": {
+        "columns": [
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "filtered_revenue": 500.0,
+        "filtered_rows": 4,
+        "matching_rows": 2,
+        "preview": [
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-01-05T00:00:00",
+            "product": "Alpha Widget",
+            "quantity": 2,
+            "region": "North",
+            "revenue": 200.0,
+            "status": "Completed",
+            "unit_price": 100.0
+          },
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-02-02T00:00:00",
+            "product": "Alpha Widget",
+            "quantity": 3,
+            "region": "South",
+            "revenue": 300.0,
+            "status": "Completed",
+            "unit_price": 100.0
+          }
+        ],
+        "rows_shown": 2,
+        "search_term": "Alpha Widget"
+      },
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": false
+        },
+        "categories": [
+          {
+            "category": "Widgets",
+            "revenue": 550.0,
+            "share": 0.846154,
+            "units": 6
+          },
+          {
+            "category": "Gadgets",
+            "revenue": 100.0,
+            "share": 0.153846,
+            "units": 4
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "₹550 in net revenue (84.6% of net revenue) from 6 units.",
+            "kind": "category",
+            "title": "Widgets is the top category"
+          },
+          {
+            "body": "₹500 in net revenue from 5 units.",
+            "kind": "product",
+            "title": "Alpha Widget is the top product"
+          },
+          {
+            "body": "The second half of the selected period produced ₹300 versus ₹350 in the first half.",
+            "kind": "trend",
+            "title": "Revenue is trending down"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": 650.0,
+              "current": 650.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 4.0,
+              "current": 4.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 162.5,
+              "current": 162.5,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 10.0,
+              "current": 10.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 3.0,
+              "current": 3.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": 162.5,
+            "rows": 4,
+            "total_orders": 4,
+            "total_products": 3,
+            "total_revenue": 650.0,
+            "total_units": 10.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [
+          {
+            "product": "Alpha Widget",
+            "revenue": 500.0,
+            "units": 5
+          },
+          {
+            "product": "Gamma Gadget",
+            "revenue": 100.0,
+            "units": 4
+          },
+          {
+            "product": "Beta Widget",
+            "revenue": 50.0,
+            "units": 1
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "orders": 2,
+              "period": "2026-01-05T00:00:00",
+              "revenue": 250.0,
+              "units": 3
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-06T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-07T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-08T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2026-01-09T00:00:00",
+              "revenue": 100.0,
+              "units": 4
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-10T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-11T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-12T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-13T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-14T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-15T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-16T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-17T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-18T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-19T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-20T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-21T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-22T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-23T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-24T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-25T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-26T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-27T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-28T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-29T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-30T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-31T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-02-01T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2026-02-02T00:00:00",
+              "revenue": 300.0,
+              "units": 3
+            }
+          ],
+          "monthly": [
+            {
+              "orders": 3,
+              "period": "2026-01-01T00:00:00",
+              "revenue": 350.0,
+              "units": 7
+            },
+            {
+              "orders": 1,
+              "period": "2026-02-01T00:00:00",
+              "revenue": 300.0,
+              "units": 3
+            }
+          ],
+          "weekly": [
+            {
+              "orders": 3,
+              "period": "2026-01-05T00:00:00",
+              "revenue": 350.0,
+              "units": 7
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-12T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-19T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2026-01-26T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2026-02-02T00:00:00",
+              "revenue": 300.0,
+              "units": 3
+            }
+          ]
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "drilldown": {
+          "product": "Alpha Widget",
+          "snapshot": {
+            "average_order_value": 250.0,
+            "rows": 2,
+            "total_orders": 2,
+            "total_revenue": 500.0,
+            "total_units": 5.0
+          },
+          "trend": {
+            "daily": [
+              {
+                "orders": 1,
+                "period": "2026-01-05T00:00:00",
+                "revenue": 200.0,
+                "units": 2
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-06T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-07T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-08T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-09T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-10T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-11T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-12T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-13T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-14T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-15T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-16T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-17T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-18T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-19T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-20T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-21T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-22T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-23T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-24T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-25T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-26T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-27T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-28T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-29T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-30T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-31T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-02-01T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 1,
+                "period": "2026-02-02T00:00:00",
+                "revenue": 300.0,
+                "units": 3
+              }
+            ],
+            "monthly": [
+              {
+                "orders": 1,
+                "period": "2026-01-01T00:00:00",
+                "revenue": 200.0,
+                "units": 2
+              },
+              {
+                "orders": 1,
+                "period": "2026-02-01T00:00:00",
+                "revenue": 300.0,
+                "units": 3
+              }
+            ],
+            "weekly": [
+              {
+                "orders": 1,
+                "period": "2026-01-05T00:00:00",
+                "revenue": 200.0,
+                "units": 2
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-12T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-19T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 0,
+                "period": "2026-01-26T00:00:00",
+                "revenue": 0.0,
+                "units": 0
+              },
+              {
+                "orders": 1,
+                "period": "2026-02-02T00:00:00",
+                "revenue": 300.0,
+                "units": 3
+              }
+            ]
+          }
+        },
+        "notes": {
+          "pareto_unavailable": null,
+          "share_unavailable": false
+        },
+        "pareto": [
+          {
+            "cumulative_revenue": 500.0,
+            "cumulative_share": 0.769231,
+            "product": "Alpha Widget",
+            "rank": 1,
+            "revenue": 500.0
+          },
+          {
+            "cumulative_revenue": 600.0,
+            "cumulative_share": 0.923077,
+            "product": "Gamma Gadget",
+            "rank": 2,
+            "revenue": 100.0
+          },
+          {
+            "cumulative_revenue": 650.0,
+            "cumulative_share": 1.0,
+            "product": "Beta Widget",
+            "rank": 3,
+            "revenue": 50.0
+          }
+        ],
+        "performance": [
+          {
+            "average_order_value": 250.0,
+            "orders": 2,
+            "product": "Alpha Widget",
+            "revenue": 500.0,
+            "share": 0.769231,
+            "units": 5
+          },
+          {
+            "average_order_value": 100.0,
+            "orders": 1,
+            "product": "Gamma Gadget",
+            "revenue": 100.0,
+            "share": 0.153846,
+            "units": 4
+          },
+          {
+            "average_order_value": 50.0,
+            "orders": 1,
+            "product": "Beta Widget",
+            "revenue": 50.0,
+            "share": 0.076923,
+            "units": 1
+          }
+        ],
+        "threshold": {
+          "cumulative_share": 0.923077,
+          "product": "Gamma Gadget",
+          "rank": 2
+        },
+        "top_products": [
+          {
+            "product": "Alpha Widget",
+            "revenue": 500.0,
+            "units": 5
+          },
+          {
+            "product": "Gamma Gadget",
+            "revenue": 100.0,
+            "units": 4
+          },
+          {
+            "product": "Beta Widget",
+            "revenue": 50.0,
+            "units": 1
+          }
+        ]
+      },
+      "regions": {
+        "available": true,
+        "blank_region_rows": 0,
+        "category_mix": [
+          {
+            "category": "Widgets",
+            "region": "South",
+            "revenue": 300.0
+          },
+          {
+            "category": "Gadgets",
+            "region": "South",
+            "revenue": 100.0
+          },
+          {
+            "category": "Widgets",
+            "region": "North",
+            "revenue": 250.0
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "has_category": true,
+        "performance": [
+          {
+            "average_order_value": 200.0,
+            "orders": 2,
+            "region": "South",
+            "revenue": 400.0,
+            "share": 0.615385,
+            "units": 7
+          },
+          {
+            "average_order_value": 125.0,
+            "orders": 2,
+            "region": "North",
+            "revenue": 250.0,
+            "share": 0.384615,
+            "units": 3
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "period": "2026-01-05T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-05T00:00:00",
+              "region": "North",
+              "revenue": 250.0
+            },
+            {
+              "period": "2026-01-06T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-06T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-07T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-07T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-08T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-08T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-09T00:00:00",
+              "region": "South",
+              "revenue": 100.0
+            },
+            {
+              "period": "2026-01-09T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-10T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-10T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-11T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-11T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-12T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-12T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-13T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-13T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-14T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-14T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-15T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-15T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-16T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-16T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-17T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-17T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-18T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-18T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-19T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-19T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-20T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-20T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-21T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-21T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-22T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-22T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-23T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-23T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-24T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-24T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-25T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-25T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-27T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-27T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-28T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-28T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-29T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-29T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-30T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-30T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-31T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-31T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "South",
+              "revenue": 300.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            }
+          ],
+          "monthly": [
+            {
+              "period": "2026-01-01T00:00:00",
+              "region": "South",
+              "revenue": 100.0
+            },
+            {
+              "period": "2026-01-01T00:00:00",
+              "region": "North",
+              "revenue": 250.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "South",
+              "revenue": 300.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            }
+          ],
+          "weekly": [
+            {
+              "period": "2026-01-05T00:00:00",
+              "region": "South",
+              "revenue": 100.0
+            },
+            {
+              "period": "2026-01-05T00:00:00",
+              "region": "North",
+              "revenue": 250.0
+            },
+            {
+              "period": "2026-01-12T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-12T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-19T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-19T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "South",
+              "revenue": 300.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-01-05",
+      "statuses": []
+    },
+    "narrow": {
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": false
+        },
+        "categories": [],
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Gadgets"
+            ],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "North"
+            ],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Gadgets · North · All products",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "No rows match the current filters. Reset or widen them to continue.",
+            "kind": "coverage",
+            "title": "No data to summarise"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [],
+        "trend": {
+          "daily": [],
+          "monthly": [],
+          "weekly": []
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2026-01-05",
+            "2026-02-02"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Gadgets"
+            ],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "North"
+            ],
+            "start_date": "2026-01-05",
+            "statuses": []
+          },
+          "order_id_available": false,
+          "previous_period": [
+            "2025-12-07",
+            "2026-01-04"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Gadgets · North · All products",
+          "total_rows": 4
+        },
+        "drilldown": null,
+        "notes": {
+          "pareto_unavailable": "empty_selection",
+          "share_unavailable": false
+        },
+        "pareto": [],
+        "performance": [],
+        "threshold": null,
+        "top_products": []
+      }
+    },
+    "narrow_state": {
+      "categories": [
+        "Gadgets"
+      ],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [
+        "North"
+      ],
+      "start_date": "2026-01-05",
+      "statuses": []
+    },
+    "options": {
+      "category": [
+        "Gadgets",
+        "Widgets"
+      ],
+      "product": [
+        "Alpha Widget",
+        "Beta Widget",
+        "Gamma Gadget"
+      ],
+      "region": [
+        "North",
+        "South"
+      ],
+      "status": [
+        "Completed"
+      ]
+    },
+    "presets": {
+      "all_time": [
+        "2026-01-05",
+        "2026-02-02"
+      ],
+      "last_30_days": [
+        "2026-01-05",
+        "2026-02-02"
+      ],
+      "last_7_days": [
+        "2026-01-27",
+        "2026-02-02"
+      ],
+      "last_90_days": [
+        "2026-01-05",
+        "2026-02-02"
+      ],
+      "this_month": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "this_year": [
+        "2026-01-05",
+        "2026-02-02"
+      ]
+    }
+  }
+}

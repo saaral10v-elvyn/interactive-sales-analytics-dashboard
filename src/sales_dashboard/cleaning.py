@@ -11,7 +11,7 @@ Discount interpretation used throughout this module:
 * Negative quantities are returns: they stay in the dataset and reduce revenue.
 
 Every step is a plain function or a clearly ordered pipeline so it can be tested
-without Streamlit.
+without the API or the browser.
 """
 
 from __future__ import annotations

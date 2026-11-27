@@ -1,12 +1,14 @@
 # Interactive Sales Analytics Dashboard
 
-A portfolio-quality sales analytics application built with Python, Streamlit,
-Pandas and Plotly. A business user can upload a sales CSV, validate and clean
-it, explore interactive KPIs and charts, filter results, and download the
-processed data.
+A portfolio-quality sales analytics application built with Python, FastAPI,
+React, Pandas and Recharts. A business user can upload a sales CSV, validate
+and clean it, explore interactive KPIs and charts, filter results, and download
+the processed data.
 
-**Current status:** Complete — v1.0.0. All six milestones are implemented and
-verified locally.
+**Current status:** v1.0.0 complete. The app is served by FastAPI with a React
+19 + TypeScript frontend from a single origin. The original Streamlit interface
+was removed in M14 once the React client reached parity, so the repository now
+contains one production stack with no Streamlit or Plotly dependency.
 
 ## Overview
 
@@ -25,7 +27,7 @@ spreadsheets. The application provides:
   discounts, statuses, returns and outliers.
 - A downloadable sample CSV and a complete column-format guide.
 - An Overview dashboard with five KPI cards, period-over-period comparisons,
-  interactive Plotly charts and deterministic business insights.
+  interactive Recharts charts and deterministic business insights.
 - A Products page with a sortable performance table, top-10 revenue ranking,
   Pareto analysis with an 80% threshold, and per-product drill-down.
 - A Regions page with a regional performance table, revenue-by-region chart,
@@ -34,8 +36,8 @@ spreadsheets. The application provides:
   row limits and sortable previews of the cleaned data.
 - CSV downloads for the filtered view, the full cleaned dataset and the
   data-quality report, with Excel-friendly UTF-8 encoding.
-- Shared sidebar filters for date presets and ranges, category, region, product
-  and status. Selections persist across pages and reset when the dataset changes.
+- Shared filters for date presets and ranges, category, region, product and
+  status. Selections persist across pages and reset when the dataset changes.
 - A privacy note explaining that uploaded data is processed in memory only.
 
 The demo dataset spans approximately 18 months and includes 30 products across
@@ -44,11 +46,11 @@ and returns.
 
 ## Screenshots
 
-Captured from the running app with the bundled demo dataset.
+Captured from the running React app with the bundled demo dataset.
 
-| Home and preparation | Overview |
+| Home | Overview |
 |---|---|
-| ![Home page with the upload card, demo loader and CSV format guide](docs/screenshots/01-home.png) | ![Overview page with KPI cards, revenue trend and category charts](docs/screenshots/03-overview.png) |
+| ![Home page with the hero, demo loader and CSV upload card](docs/screenshots/01-home.png) | ![Overview page with KPI cards, revenue trend and category charts](docs/screenshots/03-overview.png) |
 
 | Products | Regions |
 |---|---|
@@ -62,15 +64,18 @@ Captured from the running app with the bundled demo dataset.
 
 | Layer | Technology |
 |---|---|
-| Language | Python 3.11+ |
-| App framework | Streamlit |
+| Language | Python 3.11+; Node 24 for the frontend build |
+| UI | React 19, TypeScript, React Router, Recharts |
+| API | FastAPI, Uvicorn |
 | Data processing | Pandas, NumPy |
-| Visualisation | Plotly |
-| Testing and linting | pytest, Ruff |
-| CI | GitHub Actions |
+| Visualisation | Recharts |
+| Testing and linting | pytest, Ruff; Vitest, Testing Library, oxlint |
+| CI and packaging | GitHub Actions, Docker |
 
-The app requires Streamlit 1.59 or newer (for `persist_state`) and was
-verified locally with Streamlit 1.67.0.
+The API is documented in [docs/API.md](docs/API.md), the decision record is
+[ADR-001](docs/ADR-001-react-fastapi-migration.md), and the frontend has its own
+[README](frontend/README.md). Production runs from a single container on port
+8000; [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) covers configuration and hosting.
 
 ## Architecture
 
@@ -92,26 +97,32 @@ cleaning.py     typed canonical columns, revenue, discounts, returns
         ▼
 filters.py      one shared FilterState for every page
         │
-        ├──▶ analytics.py ──▶ ui/charts.py, ui/tables.py  (Overview, Products, Regions)
-        └──▶ explorer.py  ──▶ exports.py                  (Data Explorer, downloads)
+        ├──▶ analytics.py ──▶ page_payloads.py  (Overview, Products, Regions)
+        └──▶ explorer.py  ──▶ exports.py        (Data Explorer, downloads)
+        │
+        ▼
+src/sales_api/  JSON and CSV over HTTP, then the React client
 ```
 
 Design choices:
 
 - Business logic lives in pure functions (`analytics.py`, `filters.py`,
-  `cleaning.py`, `explorer.py`, `exports.py`) with no Streamlit imports. The UI
-  layers only format and render their results.
+  `cleaning.py`, `explorer.py`, `exports.py`) with no web or UI imports. The API
+  turns their results into payloads, and the React client only formats and
+  renders those payloads.
 - Every page reads the same cleaned dataframe and applies the same
   `FilterState`, so a filter set on Overview changes Products, Regions and the
   Data Explorer identically.
-- Session state is limited to the loaded file, the cleaned result, the shared
-  filter store and one-shot flash messages. Uploaded bytes are never written to
-  disk.
-- The app fails closed: a blocked cleaning result hides the analytical pages,
+- Session state is limited to the loaded file, the cleaned result and the shared
+  filter store, held by the process-local API session store. Uploaded bytes are
+  never written to disk.
+- The app fails closed: a blocked cleaning result hides the analytical routes,
   missing optional columns explain themselves, and an unexpected page error
   shows a friendly retry screen instead of a traceback.
 
 ## Quickstart (Windows PowerShell)
+
+Build the production stack and serve it from one process:
 
 ```powershell
 cd path\to\Interactive-sales-analytics-dashboard
@@ -119,10 +130,20 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements-dev.txt
-streamlit run app.py
+
+cd frontend
+npm ci
+npm run build
+cd ..
+
+$env:PYTHONPATH = "src"
+$env:SALES_API_STATIC_DIR = "frontend/dist"
+python -m sales_api
 ```
 
-Open the URL Streamlit prints, usually <http://localhost:8501>.
+Open <http://localhost:8000>. FastAPI serves the API and the built React client
+on the same origin. `frontend/dist` is detected automatically when it exists, so
+the last environment variable is optional.
 
 On macOS or Linux, create the environment with `python3 -m venv .venv` and
 activate it with `source .venv/bin/activate`.
@@ -135,12 +156,8 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
 ```
 
-For a runtime-only install:
-
-```powershell
-python -m pip install -r requirements.txt
-streamlit run app.py
-```
+`requirements.txt` contains the runtime dependencies; `requirements-dev.txt`
+adds the test and lint tools used above.
 
 The entry point adds `src/` to the import path automatically, so an editable
 install is optional. To install the package itself for development:
@@ -149,9 +166,39 @@ install is optional. To install the package itself for development:
 python -m pip install -e .
 ```
 
+## Frontend development
+
+The React client talks only to the FastAPI backend. For hot reload, run the two
+processes in separate terminals.
+
+API:
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m sales_api
+```
+
+Frontend:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open <http://localhost:5173>. Vite proxies `/api` to `127.0.0.1:8000`, so no
+CORS configuration is needed in development. The frontend tests and production
+build run with `npm test` and `npm run build`; see
+[frontend/README.md](frontend/README.md) for details. To exercise the production
+single-origin path locally, follow the Quickstart above or
+[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 ## Using the app
 
-1. Start the app with `streamlit run app.py`.
+These steps describe the production React interface.
+
+1. Start the production app with `python -m sales_api` after building the
+   frontend, or run the Vite dev server alongside the API.
 2. Click **Load demo dataset** to explore without a file, or upload a CSV.
 3. Review the dataset overview and raw preview.
 4. Check the **Schema detection** table. If a required field is missing or a
@@ -307,7 +354,6 @@ usable rows remain, analysis is blocked with an explanation.
 
 ```text
 .
-├── app.py
 ├── src/sales_dashboard/
 │   ├── config.py
 │   ├── models.py
@@ -323,30 +369,49 @@ usable rows remain, analysis is blocked with an explanation.
 │   ├── explorer.py
 │   ├── exports.py
 │   ├── formatting.py
-│   ├── state.py
 │   ├── demo.py
-│   ├── ui/
-│   │   ├── layout.py
-│   │   ├── components.py
-│   │   ├── preparation.py
-│   │   ├── filters.py
-│   │   ├── charts.py
-│   │   ├── dashboard.py
-│   │   ├── tables.py
-│   │   ├── errors.py
-│   │   └── sidebar.py
-│   └── pages/
-│       ├── home.py
-│       ├── overview.py
-│       ├── products.py
-│       ├── regions.py
-│       └── explorer.py
+│   ├── payloads.py
+│   └── page_payloads.py
+├── src/sales_api/
+│   ├── app.py
+│   ├── dependencies.py
+│   ├── errors.py
+│   ├── filtering.py
+│   ├── middleware.py
+│   ├── responses.py
+│   ├── schemas.py
+│   ├── sessions.py
+│   ├── settings.py
+│   ├── static.py
+│   ├── views.py
+│   └── routers/
+│       ├── datasets.py
+│       ├── exports.py
+│       ├── filters.py
+│       ├── health.py
+│       ├── pages.py
+│       └── preparation.py
+├── frontend/
+│   ├── src/
+│   │   ├── api/          typed client and wire types
+│   │   ├── components/   shell, filters, charts, tables
+│   │   ├── context/      session, cleaning and filter state
+│   │   ├── lib/          formatting and payload hook
+│   │   └── pages/        Home, Prepare, Overview, Products, Regions, Explorer
+│   ├── dist/             production build (gitignored)
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.ts
 ├── data/sample/sales_demo.csv
 ├── docs/
+│   ├── ADR-001-react-fastapi-migration.md
+│   ├── API.md
 │   ├── DEPLOYMENT.md
 │   └── screenshots/
 ├── tests/
-├── .streamlit/config.toml
+│   ├── golden/
+│   ├── parity_payloads.py
+│   └── test_parity.py
 ├── .github/workflows/ci.yml
 ├── Dockerfile
 ├── requirements.txt
@@ -378,57 +443,103 @@ same rows.
 
 ```powershell
 python -m pytest
-python -m pytest --cov=sales_dashboard --cov-report=term-missing
+python -m pytest --cov=sales_dashboard --cov=sales_api --cov-report=term-missing
 python -m ruff check .
 python -m ruff format --check .
 ```
 
-The suite contains 192 tests. It covers the demo dataset, schema alias detection
-and confidence, CSV loading and error handling, date ambiguity decisions,
-validation checks, cleaning rules, profiling and INR formatting. Dashboard
-coverage includes every KPI formula, distinct and fallback order counting,
-zero-order AOV, period comparisons, max-date-anchored presets, individual and
-combined filters, persistence and dataset-change reset, daily/weekly/monthly
-trends, category and top-10 calculations, insight generation, and navigation
-visibility. Products and Regions coverage includes product and regional
+Frontend checks:
+
+```powershell
+cd frontend
+npm run lint
+npm test
+npm run build
+```
+
+The Python suite contains 302 tests. It covers the demo dataset, schema alias
+detection and confidence, CSV loading and error handling, date ambiguity
+decisions, validation checks, cleaning rules, profiling and INR formatting.
+Dashboard coverage includes every KPI formula, distinct and fallback order
+counting, zero-order AOV, period comparisons, max-date-anchored presets,
+individual and combined filters, persistence and dataset-change reset,
+daily/weekly/monthly trends, category and top-10 calculations and insight
+generation. Products and Regions coverage includes product and regional
 performance, revenue share, order counts and AOV, top-10 limits, Pareto
 cumulative shares and the 80% threshold, zero and negative revenue, product
 drill-down snapshots and trends, category-by-region aggregation, missing region
-columns, empty filtered results and all page charts. Data Explorer and export
-coverage includes literal case-insensitive text and date search, empty searches,
-column validation, UTF-8 BOM CSV round-trips, safe timestamped filenames,
+columns and empty filtered results. Data Explorer and export coverage includes
+literal case-insensitive text and date search, empty searches, column
+validation, UTF-8 BOM CSV round-trips, safe timestamped filenames,
 quality-report summary and issue rows, page downloads and global-filter
-consistency. Chart tests verify unique date-axis labels and edge padding, and
-version tests keep the package, config and `pyproject.toml` in sync. Smoke tests
-use Streamlit's `AppTest` to boot `app.py`, load and clean the demo dataset, open
-the Overview, Products, Regions and Data Explorer pages, interact with filters,
-drill-downs, search, column selection, row limits and chart controls, and
-confirm the Home and preparation flow still work, including the friendly error
-boundary. The GitHub Actions workflow runs linting, formatting checks and tests
-with a coverage report on Python 3.11 and 3.12.
+consistency. Version tests keep the package, config and `pyproject.toml` in
+sync. The API tests cover the session store (expiry, capacity, isolation),
+dataset creation from the demo and uploads, manual mapping, date inspection,
+cleaning and its ambiguity stop, filter resolution, all four page payloads for
+the default, narrow and zero-row selections, the three CSV downloads with their
+frozen filenames and hashes, the shared error envelope, response normalisation,
+CORS configuration, metadata and the module entrypoint. Static-serving coverage
+includes the SPA shell and client-route fallback, immutable asset caching, JSON
+404s for `/api` and `/exports`, gzip, security headers and the docs toggle.
+The frontend suite adds 26 Vitest tests for INR and Indian digit grouping,
+date/range labels, download filename parsing, the error envelope, network and
+abort handling, and KPI card states. oxlint checks the React and TypeScript
+sources, and the production build runs under strict TypeScript.
+The GitHub Actions workflow runs linting, formatting checks and tests with a
+coverage report on Python 3.11 and 3.12, a Node 24 job that installs, lints,
+tests and builds the frontend, and a container job that builds the production
+image and smoke-tests the served SPA, API, gzip and cache headers.
+
+### Frozen analytics contract
+
+`tests/parity_payloads.py` and `tests/test_parity.py` freeze the domain layer's
+output as golden files in `tests/golden/`. Each file records one scenario's
+loaded profile, detected mapping, date inspection, validation and cleaning
+report, every page payload for the default, narrowed and empty filter states,
+and the exact bytes (size and SHA-256) of each export. Eight scenarios are
+frozen: the demo dataset, a classic-models file with manual overrides, missing
+order IDs, missing regions, ambiguous dates, returns-only data, a messy file and
+an incomplete mapping.
+
+The payloads are built from `sales_dashboard` alone — no HTTP, database or UI
+framework — so the fixtures describe the analytics contract rather than the
+current client. The page builders live in `sales_dashboard.page_payloads`, which
+the API also calls, so the fixtures and the routes share one implementation. A
+change to any number, label, ordering or CSV byte fails with the first differing
+JSON path. Regenerate only after an intentional behaviour change:
+
+```powershell
+python -m pytest tests/test_parity.py --update-golden
+```
 
 ## Deployment
 
-The repository is ready for Streamlit Community Cloud and includes a
-`Dockerfile` for self-hosting:
+The production app is one container on port 8000. FastAPI serves the API and the
+built React client from the same origin:
 
 ```powershell
 docker build -t sales-dashboard .
-docker run --rm -p 8501:8501 sales-dashboard
+docker run --rm -p 8000:8000 sales-dashboard
 ```
 
-Streamlit Community Cloud needs the repository, the `main` branch and
-`app.py` as the entry point; select Python 3.12 and let the platform install
-`requirements.txt`. For the full checklist, resource limits, configuration and
-troubleshooting, see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+The multi-stage image builds `frontend/dist` with Node 24, installs only the
+runtime requirements, runs as a non-root user and checks `/api/health`. For a
+local production build without Docker, build the frontend and run
+`python -m sales_api` with `SALES_API_STATIC_DIR=frontend/dist`.
+
+Sessions are process-local, so deploy one worker and one instance; restarting
+the container ends active sessions. For environment variables, platform
+checklists, session limits and troubleshooting, see
+[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Data privacy
 
-Uploaded CSVs are processed in memory for the current Streamlit session. The
-application does not save uploaded files, log their contents, or send them to a
-third-party service. Replacing or clearing the dataset removes it from the
-session. As with any hosted application, the server running Streamlit receives
-the uploaded bytes while the session is active.
+Uploaded CSVs are processed in memory for the current API session.
+The application does not save uploaded files, log their contents, or send them
+to a third-party service. Replacing or clearing the dataset removes it from the
+session. As with any hosted application, the server running the app receives
+the uploaded bytes while the session is active. The React client stores only an
+opaque session id in `sessionStorage`.
 
 ## Roadmap
 
@@ -440,6 +551,32 @@ the uploaded bytes while the session is active.
 - **M6 (complete):** error boundary, loading spinners, accessibility and chart
   polish, screenshots, deployment guide, Dockerfile, coverage reporting and
   v1.0.0 release.
+- **M7 (complete):** frozen analytics contract (golden fixtures) ahead of the
+  React + FastAPI migration. See
+  [ADR-001](docs/ADR-001-react-fastapi-migration.md).
+- **M8 (complete):** FastAPI skeleton with a shared error envelope, metadata,
+  an in-memory idle-expiring session store and the dataset lifecycle endpoints.
+  See [docs/API.md](docs/API.md).
+- **M9 (complete):** manual mapping, date inspection, cleaning with the
+  ambiguity stop, and filter defaults/resolution — each tied to the frozen
+  golden files.
+- **M10 (complete):** page payload builders promoted into the domain package and
+  Overview, Products, Regions and Explorer endpoints returning the frozen
+  `pages.*` bodies, with explorer search and preview limits.
+- **M11 (complete):** cleaned, filtered and quality-report CSV downloads, with
+  filenames, sizes and SHA-256 tied to the frozen export contract.
+- **M12 (complete):** React 19 + TypeScript frontend with all five flows,
+  session restore, Recharts charts, responsive styling, client-side tests,
+  lazy-loaded analytics routes and a Node CI job.
+- **M13 (complete):** single-origin production serving. FastAPI serves the built
+  React SPA with client-route fallback, immutable asset caching, gzip and
+  security headers; a multi-stage Docker image builds the client and runs the
+  API on port 8000; CI builds the image and smoke-tests the production surface;
+  deployment documentation rewritten for the new stack.
+- **M14 (complete):** removed the Streamlit interface, its page and UI modules,
+  the Plotly chart builders and their tests; consolidated the runtime
+  requirements, updated package metadata and documentation, and regenerated the
+  screenshots from the React app.
 
 ## License
 

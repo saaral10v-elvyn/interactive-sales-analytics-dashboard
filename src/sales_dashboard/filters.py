@@ -1,6 +1,6 @@
 """Pure filtering logic for the dashboard.
 
-Nothing in this module depends on Streamlit. The UI layer turns widget values
+Nothing in this module depends on a web framework. The API turns request values
 into a :class:`~sales_dashboard.models.FilterState`, while the functions here
 apply that state consistently to every KPI, chart and table.
 """
@@ -168,6 +168,20 @@ def resolve_filter_state(
         products=_sanitize_selection(state.products, options.get("product", ())),
         statuses=_sanitize_selection(state.statuses, options.get("status", ())),
     )
+
+
+def default_filter_state(dataframe: pd.DataFrame) -> FilterState | None:
+    """Return the state the dashboard opens with, or None without usable dates."""
+    bounds = dataset_date_bounds(dataframe)
+    if bounds is None:
+        return None
+    start, end = preset_range(DEFAULT_DATE_PRESET, bounds[0], bounds[1])
+    state = FilterState(
+        start_date=start,
+        end_date=end,
+        preset=DEFAULT_DATE_PRESET,
+    )
+    return resolve_filter_state(dataframe, state)
 
 
 def apply_filters(dataframe: pd.DataFrame, state: FilterState) -> pd.DataFrame:

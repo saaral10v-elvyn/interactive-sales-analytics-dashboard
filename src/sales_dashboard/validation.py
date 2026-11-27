@@ -1,6 +1,6 @@
 """Reusable data-quality checks.
 
-Every helper here is independent of Streamlit and returns a
+Every helper here is independent of the web layer and returns a
 :class:`~sales_dashboard.models.ValidationIssue` (or nothing when the check
 passes). The cleaning pipeline assembles these issues into a single report.
 """

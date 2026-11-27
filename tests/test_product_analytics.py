@@ -11,7 +11,6 @@ from sales_dashboard.analytics import (
     product_snapshot,
     top_products,
 )
-from sales_dashboard.ui.charts import build_product_pareto_figure, build_top_products_figure
 
 
 def _frame() -> pd.DataFrame:
@@ -181,17 +180,3 @@ def test_product_snapshot_handles_unknown_and_empty_products_safely() -> None:
     assert missing.total_revenue == 0.0
     assert missing.average_order_value == 0.0
     assert product_revenue_trend(pd.DataFrame(), "A", "monthly", order_id_available=False).empty
-
-
-def test_product_charts_build_from_pareto_and_ranking_data() -> None:
-    pareto = product_pareto(_frame(), order_id_available=True)
-    threshold = pareto_threshold(pareto)
-    ranking = top_products(_frame(), limit=10, order_id_available=True)
-
-    pareto_figure = build_product_pareto_figure(pareto, threshold)
-    ranking_figure = build_top_products_figure(ranking)
-
-    assert pareto_figure is not None
-    assert len(pareto_figure.data) == 3
-    assert ranking_figure is not None
-    assert len(ranking_figure.data) == 1

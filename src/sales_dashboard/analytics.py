@@ -1,8 +1,9 @@
 """Reusable business metrics for the dashboard.
 
-Every function here is pure Pandas: no Streamlit imports and no hidden state.
-The Overview page applies the shared filters once and then calls these helpers,
-which guarantees that cards, charts and insights all describe the same rows.
+Every function here is pure Pandas: no web framework imports and no hidden
+state. The Overview page applies the shared filters once and then calls these
+helpers, which guarantees that cards, charts and insights all describe the same
+rows.
 """
 
 from __future__ import annotations

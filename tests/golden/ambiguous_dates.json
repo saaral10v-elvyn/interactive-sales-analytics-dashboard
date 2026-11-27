@@ -1,0 +1,719 @@
+{
+  "case": "ambiguous_dates",
+  "cleaning": {
+    "auto": {
+      "date_format": "auto",
+      "error": {
+        "inspection": {
+          "ambiguous_count": 4,
+          "ambiguous_examples": [
+            "03/04/2026",
+            "05/06/2026",
+            "07/08/2026",
+            "11/12/2026"
+          ],
+          "day_first_hint_count": 0,
+          "invalid_count": 0,
+          "month_first_hint_count": 0,
+          "parseable_count": 4,
+          "suggested_format": null,
+          "total_values": 4
+        },
+        "message": "The date column contains ambiguous dates (4 rows, for example 03/04/2026, 05/06/2026, 07/08/2026, 11/12/2026). Choose whether dates are day-first (DMY) or month-first (MDY) before cleaning.",
+        "type": "DateDecisionRequired"
+      },
+      "ok": false
+    },
+    "dmy": {
+      "cleaned": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue"
+        ],
+        "date_format_used": "DMY",
+        "dtypes": {
+          "discount_percent": "Float64",
+          "line_total": "Float64",
+          "order_date": "datetime64[ns]",
+          "order_id": "string",
+          "product": "string",
+          "quantity": "Int64",
+          "revenue": "Float64",
+          "unit_price": "Float64"
+        },
+        "order_id_available": true,
+        "preview": [
+          {
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-04-03T00:00:00",
+            "order_id": "A-1",
+            "product": "Alpha Widget",
+            "quantity": 1,
+            "revenue": 100.0,
+            "unit_price": 100.0
+          },
+          {
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-06-05T00:00:00",
+            "order_id": "A-2",
+            "product": "Beta Widget",
+            "quantity": 2,
+            "revenue": 100.0,
+            "unit_price": 50.0
+          },
+          {
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-08-07T00:00:00",
+            "order_id": "A-3",
+            "product": "Alpha Widget",
+            "quantity": 1,
+            "revenue": 75.0,
+            "unit_price": 75.0
+          },
+          {
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-12-11T00:00:00",
+            "order_id": "A-4",
+            "product": "Beta Widget",
+            "quantity": 3,
+            "revenue": 60.0,
+            "unit_price": 20.0
+          }
+        ],
+        "report": {
+          "block_reason": null,
+          "blocked": false,
+          "date_format_used": "DMY",
+          "dropped_ratio": 0.0,
+          "issue_counts": {
+            "error": 0,
+            "info": 0,
+            "warning": 0
+          },
+          "issues": [],
+          "rows_dropped": 0,
+          "rows_input": 4,
+          "rows_output": 4,
+          "should_warn_about_drops": false
+        },
+        "returns_kept": 0,
+        "revenue_source": "quantity × unit_price after discount",
+        "rows": 4
+      },
+      "date_format": "DMY",
+      "ok": true
+    }
+  },
+  "dataset": {
+    "column_count": 5,
+    "columns": [
+      "order_id",
+      "order_date",
+      "product",
+      "quantity",
+      "unit_price"
+    ],
+    "delimiter": ",",
+    "dtypes": {
+      "order_date": "object",
+      "order_id": "object",
+      "product": "object",
+      "quantity": "object",
+      "unit_price": "object"
+    },
+    "encoding": "utf-8",
+    "filename": "ambiguous_dates.csv",
+    "mapping": {
+      "confidence": {
+        "order_date": 1.0,
+        "order_id": 1.0,
+        "product": 1.0,
+        "quantity": 1.0,
+        "unit_price": 1.0
+      },
+      "fields": {
+        "order_date": "order_date",
+        "order_id": "order_id",
+        "product": "product",
+        "quantity": "quantity",
+        "unit_price": "unit_price"
+      },
+      "is_complete": true,
+      "low_confidence_fields": [],
+      "methods": {
+        "order_date": "header",
+        "order_id": "header",
+        "product": "header",
+        "quantity": "header",
+        "unit_price": "header"
+      },
+      "missing_required": [],
+      "requires_review": false,
+      "table": [
+        {
+          "Confidence": "100%",
+          "Field": "order_id",
+          "Method": "header",
+          "Source column": "order_id",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "order_date",
+          "Method": "header",
+          "Source column": "order_date",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "customer_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "product",
+          "Method": "header",
+          "Source column": "product",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "category",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "region",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "quantity",
+          "Method": "header",
+          "Source column": "quantity",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "unit_price",
+          "Method": "header",
+          "Source column": "unit_price",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "line_total",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "discount_percent",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "status",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        }
+      ]
+    },
+    "preview": [
+      {
+        "order_date": "03/04/2026",
+        "order_id": "A-1",
+        "product": "Alpha Widget",
+        "quantity": "1",
+        "unit_price": "100"
+      },
+      {
+        "order_date": "05/06/2026",
+        "order_id": "A-2",
+        "product": "Beta Widget",
+        "quantity": "2",
+        "unit_price": "50"
+      },
+      {
+        "order_date": "07/08/2026",
+        "order_id": "A-3",
+        "product": "Alpha Widget",
+        "quantity": "1",
+        "unit_price": "75"
+      },
+      {
+        "order_date": "11/12/2026",
+        "order_id": "A-4",
+        "product": "Beta Widget",
+        "quantity": "3",
+        "unit_price": "20"
+      }
+    ],
+    "profile": {
+      "category_count": null,
+      "column_count": 5,
+      "date_max": null,
+      "date_min": null,
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "net_revenue": null,
+      "order_count": 4,
+      "product_count": 2,
+      "region_count": null,
+      "row_count": 4
+    },
+    "row_count": 4,
+    "size_bytes": 179,
+    "source": "upload",
+    "warnings": []
+  },
+  "date_inspection": {
+    "ambiguous_count": 4,
+    "ambiguous_examples": [
+      "03/04/2026",
+      "05/06/2026",
+      "07/08/2026",
+      "11/12/2026"
+    ],
+    "day_first_hint_count": 0,
+    "invalid_count": 0,
+    "month_first_hint_count": 0,
+    "parseable_count": 4,
+    "suggested_format": null,
+    "total_values": 4
+  },
+  "exports": {
+    "cleaned": {
+      "filename": "ambiguous_dates_cleaned_20260101_120000.csv",
+      "sha256": "366fdfedadb6a98e55ef028256bd94d3511e49f63ec834acae280120983d5b06",
+      "size_bytes": 268
+    },
+    "filtered": {
+      "filename": "ambiguous_dates_filtered_20260101_120000.csv",
+      "sha256": "844e409c2af89557e3a26eae1a4b3d2931db76a76431f3c318ded6a40d080768",
+      "size_bytes": 131
+    },
+    "quality_report": {
+      "filename": "ambiguous_dates_quality_report_20260101_120000.csv",
+      "sha256": "7d00df3da9398a19bf2b6cff0deaeaa112e3d6e6a4aa48359ac8a3a6b567a11b",
+      "size_bytes": 559
+    }
+  },
+  "filters": {
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-12-11",
+      "preset": "last_90_days",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-09-13",
+      "statuses": []
+    },
+    "filtered_rows": 1,
+    "summary": "Last 90 days (13 Sep 2026 – 11 Dec 2026) · All categories · All regions · All products"
+  },
+  "mapping_contract": {
+    "duplicate_source_error": {
+      "message": "Column 'order_date' is mapped to both 'order_id' and 'order_date'.",
+      "type": "MappingError"
+    },
+    "manual_override": null,
+    "unknown_column_error": {
+      "message": "Column '__not_a_column__' is not present in this file.",
+      "type": "MappingError"
+    }
+  },
+  "pages": {
+    "bounds": [
+      "2026-04-03",
+      "2026-12-11"
+    ],
+    "default": {
+      "explorer": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue"
+        ],
+        "context": {
+          "current_period": [
+            "2026-09-13",
+            "2026-12-11"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-12-11",
+            "preset": "last_90_days",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-09-13",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-06-15",
+            "2026-09-12"
+          ],
+          "previous_rows": 1,
+          "summary": "Last 90 days (13 Sep 2026 – 11 Dec 2026) · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "filtered_revenue": 60.0,
+        "filtered_rows": 1,
+        "matching_rows": 1,
+        "preview": [
+          {
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-12-11T00:00:00",
+            "order_id": "A-4",
+            "product": "Beta Widget",
+            "quantity": 3,
+            "revenue": 60.0,
+            "unit_price": 20.0
+          }
+        ],
+        "rows_shown": 1,
+        "search_term": "Beta Widget"
+      },
+      "overview": {
+        "capabilities": {
+          "has_category": false,
+          "has_dates": true,
+          "has_region": false,
+          "order_id_available": true
+        },
+        "categories": [],
+        "context": {
+          "current_period": [
+            "2026-09-13",
+            "2026-12-11"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-12-11",
+            "preset": "last_90_days",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-09-13",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-06-15",
+            "2026-09-12"
+          ],
+          "previous_rows": 1,
+          "summary": "Last 90 days (13 Sep 2026 – 11 Dec 2026) · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "₹60 in net revenue from 3 units.",
+            "kind": "product",
+            "title": "Beta Widget is the top product"
+          },
+          {
+            "body": "1 line items · 1 orders · 11 Dec 2026 to 11 Dec 2026.",
+            "kind": "coverage",
+            "title": "Selection coverage"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": -15.0,
+              "current": 60.0,
+              "key": "total_revenue",
+              "percent_change": -20.0,
+              "previous": 75.0,
+              "previous_available": true
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 1.0,
+              "key": "total_orders",
+              "percent_change": 0.0,
+              "previous": 1.0,
+              "previous_available": true
+            },
+            {
+              "absolute_change": -15.0,
+              "current": 60.0,
+              "key": "average_order_value",
+              "percent_change": -20.0,
+              "previous": 75.0,
+              "previous_available": true
+            },
+            {
+              "absolute_change": 2.0,
+              "current": 3.0,
+              "key": "total_units",
+              "percent_change": 200.0,
+              "previous": 1.0,
+              "previous_available": true
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 1.0,
+              "key": "total_products",
+              "percent_change": 0.0,
+              "previous": 1.0,
+              "previous_available": true
+            }
+          ],
+          "current": {
+            "average_order_value": 60.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_products": 1,
+            "total_revenue": 60.0,
+            "total_units": 3.0
+          },
+          "previous": {
+            "average_order_value": 75.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_products": 1,
+            "total_revenue": 75.0,
+            "total_units": 1.0
+          }
+        },
+        "top_products": [
+          {
+            "product": "Beta Widget",
+            "revenue": 60.0,
+            "units": 3
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "orders": 1,
+              "period": "2026-12-11T00:00:00",
+              "revenue": 60.0,
+              "units": 3
+            }
+          ],
+          "monthly": [
+            {
+              "orders": 1,
+              "period": "2026-12-01T00:00:00",
+              "revenue": 60.0,
+              "units": 3
+            }
+          ],
+          "weekly": [
+            {
+              "orders": 1,
+              "period": "2026-12-07T00:00:00",
+              "revenue": 60.0,
+              "units": 3
+            }
+          ]
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2026-09-13",
+            "2026-12-11"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-12-11",
+            "preset": "last_90_days",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-09-13",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-06-15",
+            "2026-09-12"
+          ],
+          "previous_rows": 1,
+          "summary": "Last 90 days (13 Sep 2026 – 11 Dec 2026) · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "drilldown": {
+          "product": "Beta Widget",
+          "snapshot": {
+            "average_order_value": 60.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_revenue": 60.0,
+            "total_units": 3.0
+          },
+          "trend": {
+            "daily": [
+              {
+                "orders": 1,
+                "period": "2026-12-11T00:00:00",
+                "revenue": 60.0,
+                "units": 3
+              }
+            ],
+            "monthly": [
+              {
+                "orders": 1,
+                "period": "2026-12-01T00:00:00",
+                "revenue": 60.0,
+                "units": 3
+              }
+            ],
+            "weekly": [
+              {
+                "orders": 1,
+                "period": "2026-12-07T00:00:00",
+                "revenue": 60.0,
+                "units": 3
+              }
+            ]
+          }
+        },
+        "notes": {
+          "pareto_unavailable": null,
+          "share_unavailable": false
+        },
+        "pareto": [
+          {
+            "cumulative_revenue": 60.0,
+            "cumulative_share": 1.0,
+            "product": "Beta Widget",
+            "rank": 1,
+            "revenue": 60.0
+          }
+        ],
+        "performance": [
+          {
+            "average_order_value": 60.0,
+            "orders": 1,
+            "product": "Beta Widget",
+            "revenue": 60.0,
+            "share": 1.0,
+            "units": 3
+          }
+        ],
+        "threshold": {
+          "cumulative_share": 1.0,
+          "product": "Beta Widget",
+          "rank": 1
+        },
+        "top_products": [
+          {
+            "product": "Beta Widget",
+            "revenue": 60.0,
+            "units": 3
+          }
+        ]
+      },
+      "regions": {
+        "available": false,
+        "blank_region_rows": 0,
+        "category_mix": [],
+        "context": {
+          "current_period": [
+            "2026-09-13",
+            "2026-12-11"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-12-11",
+            "preset": "last_90_days",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-09-13",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-06-15",
+            "2026-09-12"
+          ],
+          "previous_rows": 1,
+          "summary": "Last 90 days (13 Sep 2026 – 11 Dec 2026) · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "has_category": false,
+        "performance": [],
+        "trend": {
+          "daily": [],
+          "monthly": [],
+          "weekly": []
+        }
+      }
+    },
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-12-11",
+      "preset": "last_90_days",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-09-13",
+      "statuses": []
+    },
+    "options": {
+      "product": [
+        "Alpha Widget",
+        "Beta Widget"
+      ]
+    },
+    "presets": {
+      "all_time": [
+        "2026-04-03",
+        "2026-12-11"
+      ],
+      "last_30_days": [
+        "2026-11-12",
+        "2026-12-11"
+      ],
+      "last_7_days": [
+        "2026-12-05",
+        "2026-12-11"
+      ],
+      "last_90_days": [
+        "2026-09-13",
+        "2026-12-11"
+      ],
+      "this_month": [
+        "2026-12-01",
+        "2026-12-11"
+      ],
+      "this_year": [
+        "2026-04-03",
+        "2026-12-11"
+      ]
+    }
+  }
+}

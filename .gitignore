@@ -11,9 +11,6 @@ venv/
 .ruff_cache/
 .coverage
 
-# Streamlit secrets and local state
-.streamlit/secrets.toml
-
 # Environment files
 .env
 .env.*

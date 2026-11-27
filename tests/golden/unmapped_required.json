@@ -1,0 +1,193 @@
+{
+  "case": "unmapped_required",
+  "cleaning": {
+    "auto": {
+      "date_format": "auto",
+      "error": {
+        "message": "Required columns are missing: quantity. Choose the correct source columns before cleaning.",
+        "type": "CleaningError"
+      },
+      "ok": false
+    },
+    "dmy": {
+      "date_format": "DMY",
+      "error": {
+        "message": "Required columns are missing: quantity. Choose the correct source columns before cleaning.",
+        "type": "CleaningError"
+      },
+      "ok": false
+    }
+  },
+  "dataset": {
+    "column_count": 4,
+    "columns": [
+      "order_id",
+      "order_date",
+      "product",
+      "unit_price"
+    ],
+    "delimiter": ",",
+    "dtypes": {
+      "order_date": "object",
+      "order_id": "object",
+      "product": "object",
+      "unit_price": "object"
+    },
+    "encoding": "utf-8",
+    "filename": "unmapped_required.csv",
+    "mapping": {
+      "confidence": {
+        "order_date": 1.0,
+        "order_id": 1.0,
+        "product": 1.0,
+        "unit_price": 1.0
+      },
+      "fields": {
+        "order_date": "order_date",
+        "order_id": "order_id",
+        "product": "product",
+        "unit_price": "unit_price"
+      },
+      "is_complete": false,
+      "low_confidence_fields": [],
+      "methods": {
+        "order_date": "header",
+        "order_id": "header",
+        "product": "header",
+        "unit_price": "header"
+      },
+      "missing_required": [
+        "quantity"
+      ],
+      "requires_review": true,
+      "table": [
+        {
+          "Confidence": "100%",
+          "Field": "order_id",
+          "Method": "header",
+          "Source column": "order_id",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "order_date",
+          "Method": "header",
+          "Source column": "order_date",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "customer_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "product",
+          "Method": "header",
+          "Source column": "product",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "category",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "region",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "quantity",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "unit_price",
+          "Method": "header",
+          "Source column": "unit_price",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "line_total",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "discount_percent",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "status",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        }
+      ]
+    },
+    "preview": [
+      {
+        "order_date": "2026-01-01",
+        "order_id": "U-1",
+        "product": "Alpha Widget",
+        "unit_price": "100"
+      }
+    ],
+    "profile": {
+      "category_count": null,
+      "column_count": 4,
+      "date_max": "2026-01-01",
+      "date_min": "2026-01-01",
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "net_revenue": null,
+      "order_count": 1,
+      "product_count": 1,
+      "region_count": null,
+      "row_count": 1
+    },
+    "row_count": 1,
+    "size_bytes": 71,
+    "source": "upload",
+    "warnings": []
+  },
+  "date_inspection": {
+    "ambiguous_count": 0,
+    "ambiguous_examples": [],
+    "day_first_hint_count": 1,
+    "invalid_count": 0,
+    "month_first_hint_count": 0,
+    "parseable_count": 1,
+    "suggested_format": null,
+    "total_values": 1
+  },
+  "exports": null,
+  "filters": null,
+  "mapping_contract": {
+    "duplicate_source_error": {
+      "message": "Column 'order_date' is mapped to both 'order_id' and 'order_date'.",
+      "type": "MappingError"
+    },
+    "manual_override": null,
+    "unknown_column_error": {
+      "message": "Column '__not_a_column__' is not present in this file.",
+      "type": "MappingError"
+    }
+  },
+  "pages": null
+}

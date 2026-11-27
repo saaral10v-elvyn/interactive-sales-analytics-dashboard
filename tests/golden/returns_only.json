@@ -1,0 +1,1090 @@
+{
+  "case": "returns_only",
+  "cleaning": {
+    "auto": {
+      "cleaned": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "date_format_used": "auto",
+        "dtypes": {
+          "category": "string",
+          "discount_percent": "Float64",
+          "line_total": "Float64",
+          "order_date": "datetime64[ns]",
+          "order_id": "string",
+          "product": "string",
+          "quantity": "Int64",
+          "region": "string",
+          "revenue": "Float64",
+          "status": "string",
+          "unit_price": "Float64"
+        },
+        "order_id_available": true,
+        "preview": [
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-02-01T00:00:00",
+            "order_id": "R-1",
+            "product": "Alpha Widget",
+            "quantity": -2,
+            "region": "North",
+            "revenue": -200.0,
+            "status": "Returned",
+            "unit_price": 100.0
+          },
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-02-02T00:00:00",
+            "order_id": "R-2",
+            "product": "Beta Widget",
+            "quantity": -1,
+            "region": "South",
+            "revenue": -50.0,
+            "status": "Returned",
+            "unit_price": 50.0
+          }
+        ],
+        "report": {
+          "block_reason": null,
+          "blocked": false,
+          "date_format_used": "auto",
+          "dropped_ratio": 0.0,
+          "issue_counts": {
+            "error": 0,
+            "info": 1,
+            "warning": 0
+          },
+          "issues": [
+            {
+              "action_taken": "Kept in the dataset and netted against sales in revenue totals.",
+              "affected_label": "2 rows",
+              "affected_rows": 2,
+              "code": "RETURNS_PRESERVED",
+              "description": "Negative quantities interpreted as product returns.",
+              "example_text": "-2; -1",
+              "examples": [
+                "-2",
+                "-1"
+              ],
+              "severity": "info"
+            }
+          ],
+          "rows_dropped": 0,
+          "rows_input": 2,
+          "rows_output": 2,
+          "should_warn_about_drops": false
+        },
+        "returns_kept": 2,
+        "revenue_source": "quantity × unit_price after discount",
+        "rows": 2
+      },
+      "date_format": "auto",
+      "ok": true
+    },
+    "dmy": null
+  },
+  "dataset": {
+    "column_count": 8,
+    "columns": [
+      "order_id",
+      "order_date",
+      "product",
+      "category",
+      "region",
+      "quantity",
+      "unit_price",
+      "status"
+    ],
+    "delimiter": ",",
+    "dtypes": {
+      "category": "object",
+      "order_date": "object",
+      "order_id": "object",
+      "product": "object",
+      "quantity": "object",
+      "region": "object",
+      "status": "object",
+      "unit_price": "object"
+    },
+    "encoding": "utf-8",
+    "filename": "returns_only.csv",
+    "mapping": {
+      "confidence": {
+        "category": 1.0,
+        "order_date": 1.0,
+        "order_id": 1.0,
+        "product": 1.0,
+        "quantity": 1.0,
+        "region": 1.0,
+        "status": 1.0,
+        "unit_price": 1.0
+      },
+      "fields": {
+        "category": "category",
+        "order_date": "order_date",
+        "order_id": "order_id",
+        "product": "product",
+        "quantity": "quantity",
+        "region": "region",
+        "status": "status",
+        "unit_price": "unit_price"
+      },
+      "is_complete": true,
+      "low_confidence_fields": [],
+      "methods": {
+        "category": "header",
+        "order_date": "header",
+        "order_id": "header",
+        "product": "header",
+        "quantity": "header",
+        "region": "header",
+        "status": "header",
+        "unit_price": "header"
+      },
+      "missing_required": [],
+      "requires_review": false,
+      "table": [
+        {
+          "Confidence": "100%",
+          "Field": "order_id",
+          "Method": "header",
+          "Source column": "order_id",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "order_date",
+          "Method": "header",
+          "Source column": "order_date",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "customer_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "product",
+          "Method": "header",
+          "Source column": "product",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "category",
+          "Method": "header",
+          "Source column": "category",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "region",
+          "Method": "header",
+          "Source column": "region",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "quantity",
+          "Method": "header",
+          "Source column": "quantity",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "unit_price",
+          "Method": "header",
+          "Source column": "unit_price",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "line_total",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "discount_percent",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "status",
+          "Method": "header",
+          "Source column": "status",
+          "Status": "Detected"
+        }
+      ]
+    },
+    "preview": [
+      {
+        "category": "Widgets",
+        "order_date": "2026-02-01",
+        "order_id": "R-1",
+        "product": "Alpha Widget",
+        "quantity": "-2",
+        "region": "North",
+        "status": "Returned",
+        "unit_price": "100"
+      },
+      {
+        "category": "Widgets",
+        "order_date": "2026-02-02",
+        "order_id": "R-2",
+        "product": "Beta Widget",
+        "quantity": "-1",
+        "region": "South",
+        "status": "Returned",
+        "unit_price": "50"
+      }
+    ],
+    "profile": {
+      "category_count": 1,
+      "column_count": 8,
+      "date_max": "2026-02-02",
+      "date_min": "2026-02-01",
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "net_revenue": null,
+      "order_count": 2,
+      "product_count": 2,
+      "region_count": 2,
+      "row_count": 2
+    },
+    "row_count": 2,
+    "size_bytes": 185,
+    "source": "upload",
+    "warnings": []
+  },
+  "date_inspection": {
+    "ambiguous_count": 0,
+    "ambiguous_examples": [],
+    "day_first_hint_count": 2,
+    "invalid_count": 0,
+    "month_first_hint_count": 0,
+    "parseable_count": 2,
+    "suggested_format": null,
+    "total_values": 2
+  },
+  "exports": {
+    "cleaned": {
+      "filename": "returns_only_cleaned_20260101_120000.csv",
+      "sha256": "a9dc79cb058c759e6880ab0bf5ecb4c52b3af741333868ec3b8ca9b5a9f97387",
+      "size_bytes": 251
+    },
+    "filtered": {
+      "filename": "returns_only_filtered_20260101_120000.csv",
+      "sha256": "a9dc79cb058c759e6880ab0bf5ecb4c52b3af741333868ec3b8ca9b5a9f97387",
+      "size_bytes": 251
+    },
+    "quality_report": {
+      "filename": "returns_only_quality_report_20260101_120000.csv",
+      "sha256": "6e33658d9835e98dae3bd30ee985366cdd8096b2a342dc7683dad4b614e3220e",
+      "size_bytes": 712
+    }
+  },
+  "filters": {
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-02-01",
+      "statuses": []
+    },
+    "filtered_rows": 2,
+    "summary": "All dates · All categories · All regions · All products"
+  },
+  "mapping_contract": {
+    "duplicate_source_error": {
+      "message": "Column 'order_date' is mapped to both 'order_id' and 'order_date'.",
+      "type": "MappingError"
+    },
+    "manual_override": null,
+    "unknown_column_error": {
+      "message": "Column '__not_a_column__' is not present in this file.",
+      "type": "MappingError"
+    }
+  },
+  "pages": {
+    "bounds": [
+      "2026-02-01",
+      "2026-02-02"
+    ],
+    "default": {
+      "explorer": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 2,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 2
+        },
+        "filtered_revenue": -200.0,
+        "filtered_rows": 2,
+        "matching_rows": 1,
+        "preview": [
+          {
+            "category": "Widgets",
+            "discount_percent": 0.0,
+            "line_total": null,
+            "order_date": "2026-02-01T00:00:00",
+            "order_id": "R-1",
+            "product": "Alpha Widget",
+            "quantity": -2,
+            "region": "North",
+            "revenue": -200.0,
+            "status": "Returned",
+            "unit_price": 100.0
+          }
+        ],
+        "rows_shown": 1,
+        "search_term": "Alpha Widget"
+      },
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": true
+        },
+        "categories": [
+          {
+            "category": "Widgets",
+            "revenue": -250.0,
+            "share": 0.0,
+            "units": -3
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 2,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 2
+        },
+        "insights": [
+          {
+            "body": "Returns and adjustments offset category sales in the selected period.",
+            "kind": "category",
+            "title": "No category generated positive revenue"
+          },
+          {
+            "body": "Returns and adjustments offset product sales in the selected period.",
+            "kind": "product",
+            "title": "No product generated positive revenue"
+          },
+          {
+            "body": "Returns and adjustments outweighed sales in the selected period.",
+            "kind": "trend",
+            "title": "Net revenue is negative for this selection"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": -250.0,
+              "current": -250.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 2.0,
+              "current": 2.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": -125.0,
+              "current": -125.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": -3.0,
+              "current": -3.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 2.0,
+              "current": 2.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": -125.0,
+            "rows": 2,
+            "total_orders": 2,
+            "total_products": 2,
+            "total_revenue": -250.0,
+            "total_units": -3.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [
+          {
+            "product": "Beta Widget",
+            "revenue": -50.0,
+            "units": -1
+          },
+          {
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "units": -2
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "orders": 1,
+              "period": "2026-02-01T00:00:00",
+              "revenue": -200.0,
+              "units": -2
+            },
+            {
+              "orders": 1,
+              "period": "2026-02-02T00:00:00",
+              "revenue": -50.0,
+              "units": -1
+            }
+          ],
+          "monthly": [
+            {
+              "orders": 2,
+              "period": "2026-02-01T00:00:00",
+              "revenue": -250.0,
+              "units": -3
+            }
+          ],
+          "weekly": [
+            {
+              "orders": 1,
+              "period": "2026-01-26T00:00:00",
+              "revenue": -200.0,
+              "units": -2
+            },
+            {
+              "orders": 1,
+              "period": "2026-02-02T00:00:00",
+              "revenue": -50.0,
+              "units": -1
+            }
+          ]
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 2,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 2
+        },
+        "drilldown": {
+          "product": "Beta Widget",
+          "snapshot": {
+            "average_order_value": -50.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_revenue": -50.0,
+            "total_units": -1.0
+          },
+          "trend": {
+            "daily": [
+              {
+                "orders": 1,
+                "period": "2026-02-02T00:00:00",
+                "revenue": -50.0,
+                "units": -1
+              }
+            ],
+            "monthly": [
+              {
+                "orders": 1,
+                "period": "2026-02-01T00:00:00",
+                "revenue": -50.0,
+                "units": -1
+              }
+            ],
+            "weekly": [
+              {
+                "orders": 1,
+                "period": "2026-02-02T00:00:00",
+                "revenue": -50.0,
+                "units": -1
+              }
+            ]
+          }
+        },
+        "notes": {
+          "pareto_unavailable": "no_positive_revenue",
+          "share_unavailable": true
+        },
+        "pareto": [],
+        "performance": [
+          {
+            "average_order_value": -50.0,
+            "orders": 1,
+            "product": "Beta Widget",
+            "revenue": -50.0,
+            "share": null,
+            "units": -1
+          },
+          {
+            "average_order_value": -200.0,
+            "orders": 1,
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "share": null,
+            "units": -2
+          }
+        ],
+        "threshold": null,
+        "top_products": [
+          {
+            "product": "Beta Widget",
+            "revenue": -50.0,
+            "units": -1
+          },
+          {
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "units": -2
+          }
+        ]
+      },
+      "regions": {
+        "available": true,
+        "blank_region_rows": 0,
+        "category_mix": [
+          {
+            "category": "Widgets",
+            "region": "South",
+            "revenue": -50.0
+          },
+          {
+            "category": "Widgets",
+            "region": "North",
+            "revenue": -200.0
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 2,
+          "filters": {
+            "categories": [],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 2
+        },
+        "has_category": true,
+        "performance": [
+          {
+            "average_order_value": -50.0,
+            "orders": 1,
+            "region": "South",
+            "revenue": -50.0,
+            "share": null,
+            "units": -1
+          },
+          {
+            "average_order_value": -200.0,
+            "orders": 1,
+            "region": "North",
+            "revenue": -200.0,
+            "share": null,
+            "units": -2
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "North",
+              "revenue": -200.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "South",
+              "revenue": -50.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            }
+          ],
+          "monthly": [
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "South",
+              "revenue": -50.0
+            },
+            {
+              "period": "2026-02-01T00:00:00",
+              "region": "North",
+              "revenue": -200.0
+            }
+          ],
+          "weekly": [
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "South",
+              "revenue": 0.0
+            },
+            {
+              "period": "2026-01-26T00:00:00",
+              "region": "North",
+              "revenue": -200.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "South",
+              "revenue": -50.0
+            },
+            {
+              "period": "2026-02-02T00:00:00",
+              "region": "North",
+              "revenue": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "default_state": {
+      "categories": [],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2026-02-01",
+      "statuses": []
+    },
+    "narrow": {
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": true
+        },
+        "categories": [
+          {
+            "category": "Widgets",
+            "revenue": -200.0,
+            "share": 0.0,
+            "units": -2
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [
+              "Widgets"
+            ],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "North"
+            ],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Widgets · North · All products",
+          "total_rows": 2
+        },
+        "insights": [
+          {
+            "body": "Returns and adjustments offset category sales in the selected period.",
+            "kind": "category",
+            "title": "No category generated positive revenue"
+          },
+          {
+            "body": "Returns and adjustments offset product sales in the selected period.",
+            "kind": "product",
+            "title": "No product generated positive revenue"
+          },
+          {
+            "body": "1 line items · 1 orders · 01 Feb 2026 to 01 Feb 2026.",
+            "kind": "coverage",
+            "title": "Selection coverage"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": -200.0,
+              "current": -200.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 1.0,
+              "current": 1.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": -200.0,
+              "current": -200.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": -2.0,
+              "current": -2.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 1.0,
+              "current": 1.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": -200.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_products": 1,
+            "total_revenue": -200.0,
+            "total_units": -2.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [
+          {
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "units": -2
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "orders": 1,
+              "period": "2026-02-01T00:00:00",
+              "revenue": -200.0,
+              "units": -2
+            }
+          ],
+          "monthly": [
+            {
+              "orders": 1,
+              "period": "2026-02-01T00:00:00",
+              "revenue": -200.0,
+              "units": -2
+            }
+          ],
+          "weekly": [
+            {
+              "orders": 1,
+              "period": "2026-01-26T00:00:00",
+              "revenue": -200.0,
+              "units": -2
+            }
+          ]
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2026-02-01",
+            "2026-02-02"
+          ],
+          "filtered_rows": 1,
+          "filters": {
+            "categories": [
+              "Widgets"
+            ],
+            "end_date": "2026-02-02",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "North"
+            ],
+            "start_date": "2026-02-01",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2026-01-30",
+            "2026-01-31"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Widgets · North · All products",
+          "total_rows": 2
+        },
+        "drilldown": {
+          "product": "Alpha Widget",
+          "snapshot": {
+            "average_order_value": -200.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_revenue": -200.0,
+            "total_units": -2.0
+          },
+          "trend": {
+            "daily": [
+              {
+                "orders": 1,
+                "period": "2026-02-01T00:00:00",
+                "revenue": -200.0,
+                "units": -2
+              }
+            ],
+            "monthly": [
+              {
+                "orders": 1,
+                "period": "2026-02-01T00:00:00",
+                "revenue": -200.0,
+                "units": -2
+              }
+            ],
+            "weekly": [
+              {
+                "orders": 1,
+                "period": "2026-01-26T00:00:00",
+                "revenue": -200.0,
+                "units": -2
+              }
+            ]
+          }
+        },
+        "notes": {
+          "pareto_unavailable": "no_positive_revenue",
+          "share_unavailable": true
+        },
+        "pareto": [],
+        "performance": [
+          {
+            "average_order_value": -200.0,
+            "orders": 1,
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "share": null,
+            "units": -2
+          }
+        ],
+        "threshold": null,
+        "top_products": [
+          {
+            "product": "Alpha Widget",
+            "revenue": -200.0,
+            "units": -2
+          }
+        ]
+      }
+    },
+    "narrow_state": {
+      "categories": [
+        "Widgets"
+      ],
+      "end_date": "2026-02-02",
+      "preset": "all_time",
+      "products": [],
+      "regions": [
+        "North"
+      ],
+      "start_date": "2026-02-01",
+      "statuses": []
+    },
+    "options": {
+      "category": [
+        "Widgets"
+      ],
+      "product": [
+        "Alpha Widget",
+        "Beta Widget"
+      ],
+      "region": [
+        "North",
+        "South"
+      ],
+      "status": [
+        "Returned"
+      ]
+    },
+    "presets": {
+      "all_time": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "last_30_days": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "last_7_days": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "last_90_days": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "this_month": [
+        "2026-02-01",
+        "2026-02-02"
+      ],
+      "this_year": [
+        "2026-02-01",
+        "2026-02-02"
+      ]
+    }
+  }
+}

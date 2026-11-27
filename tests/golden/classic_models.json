@@ -1,0 +1,2084 @@
+{
+  "case": "classic_models",
+  "cleaning": {
+    "auto": {
+      "cleaned": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "date_format_used": "auto",
+        "dtypes": {
+          "category": "string",
+          "discount_percent": "Float64",
+          "line_total": "Float64",
+          "order_date": "datetime64[ns]",
+          "order_id": "string",
+          "product": "string",
+          "quantity": "Int64",
+          "region": "string",
+          "revenue": "Float64",
+          "status": "string",
+          "unit_price": "Float64"
+        },
+        "order_id_available": true,
+        "preview": [
+          {
+            "category": "Motorcycles",
+            "discount_percent": 0.0,
+            "line_total": 2871.0,
+            "order_date": "2003-01-06T00:00:00",
+            "order_id": "10101",
+            "product": "1969 Harley Davidson Ultimate Chopper",
+            "quantity": 30,
+            "region": "NA",
+            "revenue": 2871.0,
+            "status": "Shipped",
+            "unit_price": 95.7
+          },
+          {
+            "category": "Classic Cars",
+            "discount_percent": 0.0,
+            "line_total": 10715.0,
+            "order_date": "2003-01-06T00:00:00",
+            "order_id": "10101",
+            "product": "1952 Alpine Renault 1300",
+            "quantity": 50,
+            "region": "NA",
+            "revenue": 10715.0,
+            "status": "Shipped",
+            "unit_price": 214.3
+          },
+          {
+            "category": "Classic Cars",
+            "discount_percent": 0.0,
+            "line_total": 2992.0,
+            "order_date": "2003-01-10T00:00:00",
+            "order_id": "10102",
+            "product": "1972 Alfa Romeo GTA",
+            "quantity": 22,
+            "region": "EMEA",
+            "revenue": 2992.0,
+            "status": "Shipped",
+            "unit_price": 136.0
+          },
+          {
+            "category": "Motorcycles",
+            "discount_percent": 0.0,
+            "line_total": 600.0,
+            "order_date": "2003-01-29T00:00:00",
+            "order_id": "10103",
+            "product": "1972 Trek 1000",
+            "quantity": 10,
+            "region": "APAC",
+            "revenue": 600.0,
+            "status": "Resolved",
+            "unit_price": 60.0
+          }
+        ],
+        "report": {
+          "block_reason": null,
+          "blocked": false,
+          "date_format_used": "auto",
+          "dropped_ratio": 0.2,
+          "issue_counts": {
+            "error": 0,
+            "info": 1,
+            "warning": 0
+          },
+          "issues": [
+            {
+              "action_taken": "Excluded from the cleaned dataset. Returned orders stay included as negative quantities.",
+              "affected_label": "1 row",
+              "affected_rows": 1,
+              "code": "STATUS_EXCLUDED",
+              "description": "Cancelled, refunded or void records. These are excluded by default because they are not completed sales.",
+              "example_text": "Cancelled",
+              "examples": [
+                "Cancelled"
+              ],
+              "severity": "info"
+            }
+          ],
+          "rows_dropped": 1,
+          "rows_input": 5,
+          "rows_output": 4,
+          "should_warn_about_drops": false
+        },
+        "returns_kept": 0,
+        "revenue_source": "supplied line_total",
+        "rows": 4
+      },
+      "date_format": "auto",
+      "ok": true
+    },
+    "dmy": null
+  },
+  "dataset": {
+    "column_count": 12,
+    "columns": [
+      "ORDERNUMBER",
+      "ORDERLINENUMBER",
+      "PRODUCTCODE",
+      "PRODUCTNAME",
+      "PRODUCTLINE",
+      "QUANTITYORDERED",
+      "PRICEEACH",
+      "SALES",
+      "ORDERDATE",
+      "STATUS",
+      "TERRITORY",
+      "MSRP"
+    ],
+    "delimiter": ",",
+    "dtypes": {
+      "MSRP": "object",
+      "ORDERDATE": "object",
+      "ORDERLINENUMBER": "object",
+      "ORDERNUMBER": "object",
+      "PRICEEACH": "object",
+      "PRODUCTCODE": "object",
+      "PRODUCTLINE": "object",
+      "PRODUCTNAME": "object",
+      "QUANTITYORDERED": "object",
+      "SALES": "object",
+      "STATUS": "object",
+      "TERRITORY": "object"
+    },
+    "encoding": "utf-8",
+    "filename": "classic_models.csv",
+    "mapping": {
+      "confidence": {
+        "category": 1.0,
+        "line_total": 1.0,
+        "order_date": 1.0,
+        "order_id": 1.0,
+        "product": 1.0,
+        "quantity": 1.0,
+        "region": 1.0,
+        "status": 1.0,
+        "unit_price": 1.0
+      },
+      "fields": {
+        "category": "PRODUCTLINE",
+        "line_total": "SALES",
+        "order_date": "ORDERDATE",
+        "order_id": "ORDERNUMBER",
+        "product": "PRODUCTNAME",
+        "quantity": "QUANTITYORDERED",
+        "region": "TERRITORY",
+        "status": "STATUS",
+        "unit_price": "PRICEEACH"
+      },
+      "is_complete": true,
+      "low_confidence_fields": [],
+      "methods": {
+        "category": "header",
+        "line_total": "header",
+        "order_date": "header",
+        "order_id": "header",
+        "product": "header",
+        "quantity": "header",
+        "region": "header",
+        "status": "header",
+        "unit_price": "header"
+      },
+      "missing_required": [],
+      "requires_review": false,
+      "table": [
+        {
+          "Confidence": "100%",
+          "Field": "order_id",
+          "Method": "header",
+          "Source column": "ORDERNUMBER",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "order_date",
+          "Method": "header",
+          "Source column": "ORDERDATE",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "customer_id",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "product",
+          "Method": "header",
+          "Source column": "PRODUCTNAME",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "category",
+          "Method": "header",
+          "Source column": "PRODUCTLINE",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "region",
+          "Method": "header",
+          "Source column": "TERRITORY",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "quantity",
+          "Method": "header",
+          "Source column": "QUANTITYORDERED",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "unit_price",
+          "Method": "header",
+          "Source column": "PRICEEACH",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "line_total",
+          "Method": "header",
+          "Source column": "SALES",
+          "Status": "Detected"
+        },
+        {
+          "Confidence": "—",
+          "Field": "discount_percent",
+          "Method": "—",
+          "Source column": "—",
+          "Status": "Not detected"
+        },
+        {
+          "Confidence": "100%",
+          "Field": "status",
+          "Method": "header",
+          "Source column": "STATUS",
+          "Status": "Detected"
+        }
+      ]
+    },
+    "preview": [
+      {
+        "MSRP": "95",
+        "ORDERDATE": "2003-01-06",
+        "ORDERLINENUMBER": "1",
+        "ORDERNUMBER": "10101",
+        "PRICEEACH": "95.70",
+        "PRODUCTCODE": "S10_1678",
+        "PRODUCTLINE": "Motorcycles",
+        "PRODUCTNAME": "1969 Harley Davidson Ultimate Chopper",
+        "QUANTITYORDERED": "30",
+        "SALES": "2871.00",
+        "STATUS": "Shipped",
+        "TERRITORY": "NA"
+      },
+      {
+        "MSRP": "214",
+        "ORDERDATE": "2003-01-06",
+        "ORDERLINENUMBER": "2",
+        "ORDERNUMBER": "10101",
+        "PRICEEACH": "214.30",
+        "PRODUCTCODE": "S10_1949",
+        "PRODUCTLINE": "Classic Cars",
+        "PRODUCTNAME": "1952 Alpine Renault 1300",
+        "QUANTITYORDERED": "50",
+        "SALES": "10715.00",
+        "STATUS": "Shipped",
+        "TERRITORY": "NA"
+      },
+      {
+        "MSRP": "136",
+        "ORDERDATE": "2003-01-10",
+        "ORDERLINENUMBER": "1",
+        "ORDERNUMBER": "10102",
+        "PRICEEACH": "136.00",
+        "PRODUCTCODE": "S10_4757",
+        "PRODUCTLINE": "Classic Cars",
+        "PRODUCTNAME": "1972 Alfa Romeo GTA",
+        "QUANTITYORDERED": "22",
+        "SALES": "2992.00",
+        "STATUS": "Shipped",
+        "TERRITORY": "EMEA"
+      },
+      {
+        "MSRP": "60",
+        "ORDERDATE": "2003-01-29",
+        "ORDERLINENUMBER": "1",
+        "ORDERNUMBER": "10103",
+        "PRICEEACH": "60.00",
+        "PRODUCTCODE": "S700_4002",
+        "PRODUCTLINE": "Motorcycles",
+        "PRODUCTNAME": "1972 Trek 1000",
+        "QUANTITYORDERED": "10",
+        "SALES": "600.00",
+        "STATUS": "Resolved",
+        "TERRITORY": "APAC"
+      },
+      {
+        "MSRP": "150",
+        "ORDERDATE": "2003-02-14",
+        "ORDERLINENUMBER": "1",
+        "ORDERNUMBER": "10104",
+        "PRICEEACH": "150.00",
+        "PRODUCTCODE": "S24_2011",
+        "PRODUCTLINE": "Classic Cars",
+        "PRODUCTNAME": "1998 Chrysler Plymouth Prowler",
+        "QUANTITYORDERED": "5",
+        "SALES": "750.00",
+        "STATUS": "Cancelled",
+        "TERRITORY": "NA"
+      }
+    ],
+    "profile": {
+      "category_count": 2,
+      "column_count": 12,
+      "date_max": "2003-02-14",
+      "date_min": "2003-01-06",
+      "duplicate_rows": 0,
+      "missing_cells": 0,
+      "net_revenue": 17928.0,
+      "order_count": 4,
+      "product_count": 5,
+      "region_count": 3,
+      "row_count": 5
+    },
+    "row_count": 5,
+    "size_bytes": 627,
+    "source": "upload",
+    "warnings": []
+  },
+  "date_inspection": {
+    "ambiguous_count": 0,
+    "ambiguous_examples": [],
+    "day_first_hint_count": 5,
+    "invalid_count": 0,
+    "month_first_hint_count": 0,
+    "parseable_count": 5,
+    "suggested_format": null,
+    "total_values": 5
+  },
+  "exports": {
+    "cleaned": {
+      "filename": "classic_models_cleaned_20260101_120000.csv",
+      "sha256": "e8989331df6374589e78a0803b05bd360c95fa0260fd5204a8155b41d17a1799",
+      "size_bytes": 481
+    },
+    "filtered": {
+      "filename": "classic_models_filtered_20260101_120000.csv",
+      "sha256": "e8989331df6374589e78a0803b05bd360c95fa0260fd5204a8155b41d17a1799",
+      "size_bytes": 481
+    },
+    "quality_report": {
+      "filename": "classic_models_quality_report_20260101_120000.csv",
+      "sha256": "8ca55eb90d6e334486ce1cddb94f270fd650d63d5731204476e34a07d3b5f9a6",
+      "size_bytes": 778
+    }
+  },
+  "filters": {
+    "default_state": {
+      "categories": [],
+      "end_date": "2003-01-29",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2003-01-06",
+      "statuses": []
+    },
+    "filtered_rows": 4,
+    "summary": "All dates · All categories · All regions · All products"
+  },
+  "mapping_contract": {
+    "duplicate_source_error": {
+      "message": "Column 'ORDERDATE' is mapped to both 'order_id' and 'order_date'.",
+      "type": "MappingError"
+    },
+    "manual_override": {
+      "mapping": {
+        "confidence": {
+          "category": 1.0,
+          "line_total": 1.0,
+          "order_date": 1.0,
+          "order_id": 1.0,
+          "product": 1.0,
+          "quantity": 1.0,
+          "region": 1.0,
+          "status": 1.0,
+          "unit_price": 1.0
+        },
+        "fields": {
+          "category": "PRODUCTLINE",
+          "line_total": "SALES",
+          "order_date": "ORDERDATE",
+          "order_id": "ORDERNUMBER",
+          "product": "PRODUCTCODE",
+          "quantity": "QUANTITYORDERED",
+          "region": "TERRITORY",
+          "status": "STATUS",
+          "unit_price": "PRICEEACH"
+        },
+        "is_complete": true,
+        "low_confidence_fields": [],
+        "methods": {
+          "category": "header",
+          "line_total": "header",
+          "order_date": "header",
+          "order_id": "header",
+          "product": "manual",
+          "quantity": "header",
+          "region": "header",
+          "status": "header",
+          "unit_price": "header"
+        },
+        "missing_required": [],
+        "requires_review": false,
+        "table": [
+          {
+            "Confidence": "100%",
+            "Field": "order_id",
+            "Method": "header",
+            "Source column": "ORDERNUMBER",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "order_date",
+            "Method": "header",
+            "Source column": "ORDERDATE",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "—",
+            "Field": "customer_id",
+            "Method": "—",
+            "Source column": "—",
+            "Status": "Not detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "product",
+            "Method": "manual",
+            "Source column": "PRODUCTCODE",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "category",
+            "Method": "header",
+            "Source column": "PRODUCTLINE",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "region",
+            "Method": "header",
+            "Source column": "TERRITORY",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "quantity",
+            "Method": "header",
+            "Source column": "QUANTITYORDERED",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "unit_price",
+            "Method": "header",
+            "Source column": "PRICEEACH",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "line_total",
+            "Method": "header",
+            "Source column": "SALES",
+            "Status": "Detected"
+          },
+          {
+            "Confidence": "—",
+            "Field": "discount_percent",
+            "Method": "—",
+            "Source column": "—",
+            "Status": "Not detected"
+          },
+          {
+            "Confidence": "100%",
+            "Field": "status",
+            "Method": "header",
+            "Source column": "STATUS",
+            "Status": "Detected"
+          }
+        ]
+      },
+      "requested": {
+        "product": "PRODUCTCODE"
+      }
+    },
+    "unknown_column_error": {
+      "message": "Column '__not_a_column__' is not present in this file.",
+      "type": "MappingError"
+    }
+  },
+  "pages": {
+    "bounds": [
+      "2003-01-06",
+      "2003-01-29"
+    ],
+    "default": {
+      "explorer": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "filtered_revenue": 10715.0,
+        "filtered_rows": 4,
+        "matching_rows": 1,
+        "preview": [
+          {
+            "category": "Classic Cars",
+            "discount_percent": 0.0,
+            "line_total": 10715.0,
+            "order_date": "2003-01-06T00:00:00",
+            "order_id": "10101",
+            "product": "1952 Alpine Renault 1300",
+            "quantity": 50,
+            "region": "NA",
+            "revenue": 10715.0,
+            "status": "Shipped",
+            "unit_price": 214.3
+          }
+        ],
+        "rows_shown": 1,
+        "search_term": "1952 Alpine Renault 1300"
+      },
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": true
+        },
+        "categories": [
+          {
+            "category": "Classic Cars",
+            "revenue": 13707.0,
+            "share": 0.797939,
+            "units": 72
+          },
+          {
+            "category": "Motorcycles",
+            "revenue": 3471.0,
+            "share": 0.202061,
+            "units": 40
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "₹13,707 in net revenue (79.8% of net revenue) from 72 units.",
+            "kind": "category",
+            "title": "Classic Cars is the top category"
+          },
+          {
+            "body": "₹10,715 in net revenue from 50 units.",
+            "kind": "product",
+            "title": "1952 Alpine Renault 1300 is the top product"
+          },
+          {
+            "body": "The second half of the selected period produced ₹600 versus ₹16,578 in the first half.",
+            "kind": "trend",
+            "title": "Revenue is trending down"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": 17178.0,
+              "current": 17178.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 3.0,
+              "current": 3.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 5726.0,
+              "current": 5726.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 112.0,
+              "current": 112.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 4.0,
+              "current": 4.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": 5726.0,
+            "rows": 4,
+            "total_orders": 3,
+            "total_products": 4,
+            "total_revenue": 17178.0,
+            "total_units": 112.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [
+          {
+            "product": "1952 Alpine Renault 1300",
+            "revenue": 10715.0,
+            "units": 50
+          },
+          {
+            "product": "1972 Alfa Romeo GTA",
+            "revenue": 2992.0,
+            "units": 22
+          },
+          {
+            "product": "1969 Harley Davidson Ultimate Chopper",
+            "revenue": 2871.0,
+            "units": 30
+          },
+          {
+            "product": "1972 Trek 1000",
+            "revenue": 600.0,
+            "units": 10
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "orders": 1,
+              "period": "2003-01-06T00:00:00",
+              "revenue": 13586.0,
+              "units": 80
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-07T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-08T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-09T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2003-01-10T00:00:00",
+              "revenue": 2992.0,
+              "units": 22
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-11T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-12T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-13T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-14T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-15T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-16T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-17T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-18T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-19T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-20T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-21T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-22T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-23T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-24T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-25T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-26T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-27T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-28T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2003-01-29T00:00:00",
+              "revenue": 600.0,
+              "units": 10
+            }
+          ],
+          "monthly": [
+            {
+              "orders": 3,
+              "period": "2003-01-01T00:00:00",
+              "revenue": 17178.0,
+              "units": 112
+            }
+          ],
+          "weekly": [
+            {
+              "orders": 2,
+              "period": "2003-01-06T00:00:00",
+              "revenue": 16578.0,
+              "units": 102
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-13T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 0,
+              "period": "2003-01-20T00:00:00",
+              "revenue": 0.0,
+              "units": 0
+            },
+            {
+              "orders": 1,
+              "period": "2003-01-27T00:00:00",
+              "revenue": 600.0,
+              "units": 10
+            }
+          ]
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "drilldown": {
+          "product": "1952 Alpine Renault 1300",
+          "snapshot": {
+            "average_order_value": 10715.0,
+            "rows": 1,
+            "total_orders": 1,
+            "total_revenue": 10715.0,
+            "total_units": 50.0
+          },
+          "trend": {
+            "daily": [
+              {
+                "orders": 1,
+                "period": "2003-01-06T00:00:00",
+                "revenue": 10715.0,
+                "units": 50
+              }
+            ],
+            "monthly": [
+              {
+                "orders": 1,
+                "period": "2003-01-01T00:00:00",
+                "revenue": 10715.0,
+                "units": 50
+              }
+            ],
+            "weekly": [
+              {
+                "orders": 1,
+                "period": "2003-01-06T00:00:00",
+                "revenue": 10715.0,
+                "units": 50
+              }
+            ]
+          }
+        },
+        "notes": {
+          "pareto_unavailable": null,
+          "share_unavailable": false
+        },
+        "pareto": [
+          {
+            "cumulative_revenue": 10715.0,
+            "cumulative_share": 0.623763,
+            "product": "1952 Alpine Renault 1300",
+            "rank": 1,
+            "revenue": 10715.0
+          },
+          {
+            "cumulative_revenue": 13707.0,
+            "cumulative_share": 0.797939,
+            "product": "1972 Alfa Romeo GTA",
+            "rank": 2,
+            "revenue": 2992.0
+          },
+          {
+            "cumulative_revenue": 16578.0,
+            "cumulative_share": 0.965072,
+            "product": "1969 Harley Davidson Ultimate Chopper",
+            "rank": 3,
+            "revenue": 2871.0
+          },
+          {
+            "cumulative_revenue": 17178.0,
+            "cumulative_share": 1.0,
+            "product": "1972 Trek 1000",
+            "rank": 4,
+            "revenue": 600.0
+          }
+        ],
+        "performance": [
+          {
+            "average_order_value": 10715.0,
+            "orders": 1,
+            "product": "1952 Alpine Renault 1300",
+            "revenue": 10715.0,
+            "share": 0.623763,
+            "units": 50
+          },
+          {
+            "average_order_value": 2992.0,
+            "orders": 1,
+            "product": "1972 Alfa Romeo GTA",
+            "revenue": 2992.0,
+            "share": 0.174176,
+            "units": 22
+          },
+          {
+            "average_order_value": 2871.0,
+            "orders": 1,
+            "product": "1969 Harley Davidson Ultimate Chopper",
+            "revenue": 2871.0,
+            "share": 0.167132,
+            "units": 30
+          },
+          {
+            "average_order_value": 600.0,
+            "orders": 1,
+            "product": "1972 Trek 1000",
+            "revenue": 600.0,
+            "share": 0.034928,
+            "units": 10
+          }
+        ],
+        "threshold": {
+          "cumulative_share": 0.965072,
+          "product": "1969 Harley Davidson Ultimate Chopper",
+          "rank": 3
+        },
+        "top_products": [
+          {
+            "product": "1952 Alpine Renault 1300",
+            "revenue": 10715.0,
+            "units": 50
+          },
+          {
+            "product": "1972 Alfa Romeo GTA",
+            "revenue": 2992.0,
+            "units": 22
+          },
+          {
+            "product": "1969 Harley Davidson Ultimate Chopper",
+            "revenue": 2871.0,
+            "units": 30
+          },
+          {
+            "product": "1972 Trek 1000",
+            "revenue": 600.0,
+            "units": 10
+          }
+        ]
+      },
+      "regions": {
+        "available": true,
+        "blank_region_rows": 0,
+        "category_mix": [
+          {
+            "category": "Classic Cars",
+            "region": "NA",
+            "revenue": 10715.0
+          },
+          {
+            "category": "Motorcycles",
+            "region": "NA",
+            "revenue": 2871.0
+          },
+          {
+            "category": "Classic Cars",
+            "region": "EMEA",
+            "revenue": 2992.0
+          },
+          {
+            "category": "Motorcycles",
+            "region": "APAC",
+            "revenue": 600.0
+          }
+        ],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 4,
+          "filters": {
+            "categories": [],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · All categories · All regions · All products",
+          "total_rows": 4
+        },
+        "has_category": true,
+        "performance": [
+          {
+            "average_order_value": 13586.0,
+            "orders": 1,
+            "region": "NA",
+            "revenue": 13586.0,
+            "share": 0.790895,
+            "units": 80
+          },
+          {
+            "average_order_value": 2992.0,
+            "orders": 1,
+            "region": "EMEA",
+            "revenue": 2992.0,
+            "share": 0.174176,
+            "units": 22
+          },
+          {
+            "average_order_value": 600.0,
+            "orders": 1,
+            "region": "APAC",
+            "revenue": 600.0,
+            "share": 0.034928,
+            "units": 10
+          }
+        ],
+        "trend": {
+          "daily": [
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "NA",
+              "revenue": 13586.0
+            },
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-07T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-07T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-07T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-08T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-08T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-08T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-09T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-09T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-09T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-10T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-10T00:00:00",
+              "region": "EMEA",
+              "revenue": 2992.0
+            },
+            {
+              "period": "2003-01-10T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-11T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-11T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-11T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-12T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-12T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-12T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-14T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-14T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-14T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-15T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-15T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-15T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-16T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-16T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-16T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-17T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-17T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-17T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-18T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-18T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-18T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-19T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-19T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-19T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-21T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-21T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-21T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-22T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-22T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-22T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-23T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-23T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-23T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-24T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-24T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-24T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-25T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-25T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-25T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-26T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-26T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-26T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-28T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-28T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-28T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-29T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-29T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-29T00:00:00",
+              "region": "APAC",
+              "revenue": 600.0
+            }
+          ],
+          "monthly": [
+            {
+              "period": "2003-01-01T00:00:00",
+              "region": "NA",
+              "revenue": 13586.0
+            },
+            {
+              "period": "2003-01-01T00:00:00",
+              "region": "EMEA",
+              "revenue": 2992.0
+            },
+            {
+              "period": "2003-01-01T00:00:00",
+              "region": "APAC",
+              "revenue": 600.0
+            }
+          ],
+          "weekly": [
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "NA",
+              "revenue": 13586.0
+            },
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "EMEA",
+              "revenue": 2992.0
+            },
+            {
+              "period": "2003-01-06T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-13T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-20T00:00:00",
+              "region": "APAC",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "NA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "EMEA",
+              "revenue": 0.0
+            },
+            {
+              "period": "2003-01-27T00:00:00",
+              "region": "APAC",
+              "revenue": 600.0
+            }
+          ]
+        }
+      }
+    },
+    "default_state": {
+      "categories": [],
+      "end_date": "2003-01-29",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2003-01-06",
+      "statuses": []
+    },
+    "empty": {
+      "explorer": {
+        "columns": [
+          "order_id",
+          "order_date",
+          "product",
+          "category",
+          "region",
+          "quantity",
+          "unit_price",
+          "line_total",
+          "discount_percent",
+          "revenue",
+          "status"
+        ],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": [
+              "Resolved"
+            ]
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · All regions · All products · Resolved",
+          "total_rows": 4
+        },
+        "filtered_revenue": 0.0,
+        "filtered_rows": 0,
+        "matching_rows": 0,
+        "preview": [],
+        "rows_shown": 0,
+        "search_term": ""
+      },
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": true
+        },
+        "categories": [],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": [
+              "Resolved"
+            ]
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · All regions · All products · Resolved",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "No rows match the current filters. Reset or widen them to continue.",
+            "kind": "coverage",
+            "title": "No data to summarise"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [],
+        "trend": {
+          "daily": [],
+          "monthly": [],
+          "weekly": []
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": [
+              "Resolved"
+            ]
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · All regions · All products · Resolved",
+          "total_rows": 4
+        },
+        "drilldown": null,
+        "notes": {
+          "pareto_unavailable": "empty_selection",
+          "share_unavailable": false
+        },
+        "pareto": [],
+        "performance": [],
+        "threshold": null,
+        "top_products": []
+      },
+      "regions": {
+        "available": true,
+        "blank_region_rows": 0,
+        "category_mix": [],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [],
+            "start_date": "2003-01-06",
+            "statuses": [
+              "Resolved"
+            ]
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · All regions · All products · Resolved",
+          "total_rows": 4
+        },
+        "has_category": true,
+        "performance": [],
+        "trend": {
+          "daily": [],
+          "monthly": [],
+          "weekly": []
+        }
+      }
+    },
+    "empty_state": {
+      "categories": [
+        "Classic Cars"
+      ],
+      "end_date": "2003-01-29",
+      "preset": "all_time",
+      "products": [],
+      "regions": [],
+      "start_date": "2003-01-06",
+      "statuses": [
+        "Resolved"
+      ]
+    },
+    "narrow": {
+      "overview": {
+        "capabilities": {
+          "has_category": true,
+          "has_dates": true,
+          "has_region": true,
+          "order_id_available": true
+        },
+        "categories": [],
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "APAC"
+            ],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · APAC · All products",
+          "total_rows": 4
+        },
+        "insights": [
+          {
+            "body": "No rows match the current filters. Reset or widen them to continue.",
+            "kind": "coverage",
+            "title": "No data to summarise"
+          }
+        ],
+        "kpis": {
+          "comparisons": [
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_revenue",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_orders",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "average_order_value",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_units",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            },
+            {
+              "absolute_change": 0.0,
+              "current": 0.0,
+              "key": "total_products",
+              "percent_change": null,
+              "previous": 0.0,
+              "previous_available": false
+            }
+          ],
+          "current": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          },
+          "previous": {
+            "average_order_value": 0.0,
+            "rows": 0,
+            "total_orders": 0,
+            "total_products": 0,
+            "total_revenue": 0.0,
+            "total_units": 0.0
+          }
+        },
+        "top_products": [],
+        "trend": {
+          "daily": [],
+          "monthly": [],
+          "weekly": []
+        }
+      },
+      "products": {
+        "context": {
+          "current_period": [
+            "2003-01-06",
+            "2003-01-29"
+          ],
+          "filtered_rows": 0,
+          "filters": {
+            "categories": [
+              "Classic Cars"
+            ],
+            "end_date": "2003-01-29",
+            "preset": "all_time",
+            "products": [],
+            "regions": [
+              "APAC"
+            ],
+            "start_date": "2003-01-06",
+            "statuses": []
+          },
+          "order_id_available": true,
+          "previous_period": [
+            "2002-12-13",
+            "2003-01-05"
+          ],
+          "previous_rows": 0,
+          "summary": "All dates · Classic Cars · APAC · All products",
+          "total_rows": 4
+        },
+        "drilldown": null,
+        "notes": {
+          "pareto_unavailable": "empty_selection",
+          "share_unavailable": false
+        },
+        "pareto": [],
+        "performance": [],
+        "threshold": null,
+        "top_products": []
+      }
+    },
+    "narrow_state": {
+      "categories": [
+        "Classic Cars"
+      ],
+      "end_date": "2003-01-29",
+      "preset": "all_time",
+      "products": [],
+      "regions": [
+        "APAC"
+      ],
+      "start_date": "2003-01-06",
+      "statuses": []
+    },
+    "options": {
+      "category": [
+        "Classic Cars",
+        "Motorcycles"
+      ],
+      "product": [
+        "1952 Alpine Renault 1300",
+        "1969 Harley Davidson Ultimate Chopper",
+        "1972 Alfa Romeo GTA",
+        "1972 Trek 1000"
+      ],
+      "region": [
+        "APAC",
+        "EMEA",
+        "NA"
+      ],
+      "status": [
+        "Resolved",
+        "Shipped"
+      ]
+    },
+    "presets": {
+      "all_time": [
+        "2003-01-06",
+        "2003-01-29"
+      ],
+      "last_30_days": [
+        "2003-01-06",
+        "2003-01-29"
+      ],
+      "last_7_days": [
+        "2003-01-23",
+        "2003-01-29"
+      ],
+      "last_90_days": [
+        "2003-01-06",
+        "2003-01-29"
+      ],
+      "this_month": [
+        "2003-01-06",
+        "2003-01-29"
+      ],
+      "this_year": [
+        "2003-01-06",
+        "2003-01-29"
+      ]
+    }
+  }
+}

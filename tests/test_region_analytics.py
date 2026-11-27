@@ -8,11 +8,6 @@ from sales_dashboard.analytics import (
     regional_performance,
     regional_revenue_trend,
 )
-from sales_dashboard.ui.charts import (
-    build_region_category_figure,
-    build_region_revenue_figure,
-    build_regional_trend_figure,
-)
 
 
 def _frame() -> pd.DataFrame:
@@ -124,20 +119,3 @@ def test_regional_revenue_trend_handles_missing_columns_and_empty_data() -> None
     assert regional_revenue_trend(
         pd.DataFrame({"order_date": pd.to_datetime(["2026-01-01"]), "revenue": [10.0]})
     ).empty
-
-
-def test_regional_charts_build_from_aggregated_data() -> None:
-    performance = regional_performance(_frame(), order_id_available=True)
-    category_data = region_category_revenue(_frame())
-    trend = regional_revenue_trend(_frame(), "monthly")
-
-    revenue_figure = build_region_revenue_figure(performance)
-    category_figure = build_region_category_figure(category_data)
-    trend_figure = build_regional_trend_figure(trend, "monthly")
-
-    assert revenue_figure is not None
-    assert category_figure is not None
-    assert trend_figure is not None
-    assert len(revenue_figure.data) == 1
-    assert len(category_figure.data) == 3
-    assert len(trend_figure.data) == 3
