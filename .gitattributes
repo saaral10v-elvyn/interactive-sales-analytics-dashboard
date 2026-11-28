@@ -1,0 +1,4 @@
+# The bundled demo dataset is part of the frozen parity contract, which
+# records its exact byte size. Check it out with CRLF on every platform so
+# `dataset.size_bytes` is identical on Windows and Linux runners.
+data/sample/*.csv text eol=crlf
